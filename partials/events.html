@@ -1,0 +1,18 @@
+<header>
+	<i class="icon ion-ios7-bell" style="color: rgb(138, 138, 138); float: left; padding-left: 10px; padding-top: 2px;"></i>
+	<small current-time="hourFormat"></small>
+    <i class="icon ion-battery-full" style="color: rgb(138, 138, 138); float: right; padding-right: 10px; padding-top: 2px;"></i>
+</header>
+<section class="main-content">
+    <ul>
+        <div ng-repeat="day in days">
+            <li class="list-divider">{{ day.desc }}</li>
+            <li ng-repeat="event in day.events" ng-click="selectEvent($parent.$index, $index)"><small>{{ event.time }}</small>{{ event.name }}</li>
+        </div>
+    </ul>
+</section>
+<footer class="gray">
+    <a href="#/event/add"><i class="icon ion-plus-round"></i></a>
+    <i class="icon ion-eye"></i>
+    <i class="icon ion-search"></i>
+</footer>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" ng-app="tempus">
+<head>
+	<meta charset="UTF-8">
+	<title>Tempus</title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/ionicons.css">
+	<link rel="stylesheet" href="app.css">
+</head>
+<body ng-controller="AppCtrl">
+    <div class="container">
+ 	    <div id="screen" class="white" data-ng-view="" >
+
+	    </div>
+    </div>
+	<button ng-click="nextMenu()">Swype</button>
+    <button ng-click="unlock()">Lock/Unlock</button>
+    <button ng-click="speak()">Speak</button>
+    <button ng-click="back()">Back</button>
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-route.min.js"></script>
+	<script src="js/angular-animate.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,32 @@
+<header>
+	<i class="icon ion-ios7-bell" style="color: rgb(138, 138, 138); float: left; padding-left: 10px; padding-top: 2px;"></i>
+	<small current-time="hourFormat"></small>
+	<i class="icon ion-battery-full" style="color: rgb(138, 138, 138); float: right; padding-right: 10px; padding-top: 2px;"></i>
+</header>
+<section class="main-content">
+	<p>Name:</p>
+	<input type="text" placeholder="Event name" ng-model="name"/>
+	<p>Date:</p>
+	<input type="date" placeholder="Event date" ng-model="date" />
+	<p>Frequency:</p>
+	<select id="select-speech">
+		<option value="none">None</option>
+		<option value="daily">Daily</option>
+		<option value="weekly">Weekly</option>
+		<option value="monthly">Monthly</option>
+		<option value="yearly">Yearly</option>
+ 	</select>
+	<small>&#x25bc;</small>
+	<p>Time:</p>
+	<input type="time" ng-model="time"/>
+	<p>Location:</p>
+	<input type="text" placeholder="Event location" ng-model="place" />
+	<p>Notifications:</p>
+	<ul>
+		<li><i class="ion-plus-round"></i> Add notification</li>
+	</ul>
+</section>
+<footer class="gray">
+    <i class="icon ion-close-round" ng-click="back()"></i>
+	<i class="icon ion-checkmark-round" ng-click="acceptEvent()"></i>
+</footer>

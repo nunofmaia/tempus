@@ -1,0 +1,16 @@
+<header>
+	<i class="icon ion-ios7-bell" style="color: rgb(138, 138, 138); float: left; padding-left: 10px; padding-top: 2px;"></i>
+	<small current-time="hourFormat"></small>
+	<i class="icon ion-battery-full" style="color: rgb(138, 138, 138); float: right; padding-right: 10px; padding-top: 2px;"></i>
+</header>
+<section class="main-content">
+	<h3>{{ selectedEvent.event.name }}</h3>
+	<p><i class="icon ion-android-clock"></i>{{ selectedEvent.event.time }}</p>
+	<p><i class="icon ion-location"></i>{{ selectedEvent.event.place }}</p>
+	<p><i class="icon ion-ios7-bell"></i>No notifications</p>
+	<p class="description">Don't forget to bring the documents about that important thing</p>
+</section>
+<footer class="gray">
+	<i class="icon ion-edit" ng-click="editEvent()"></i>
+    <a href="#/event/delete"><i class="icon ion-trash-a"></i></a>
+</footer>
