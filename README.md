@@ -1,4 +1,3 @@
 # tempus
-========
 
 A smartwatch prototype
