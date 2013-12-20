@@ -1,0 +1,57 @@
+.col {
+    border:0px solid rgba(0,0,0,0);
+    float:left;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    -moz-background-clip:padding-box !important;
+    -webkit-background-clip:padding-box !important;
+    background-clip:padding-box !important;
+}
+
+
+@media screen and (min-width: 0px) {
+    .col {
+        margin-left:1%;
+        padding:0 0.5%;
+    }
+
+    .row .col:first-child {
+        margin-left:0;
+    }
+
+
+        /*
+        Add your semantic classnames in alongside their corresponding spans here. e.g.
+        
+        .span_3,
+        .my_semantic_class_name {
+            ...
+        }
+        */
+    
+    .span_1_3 {
+        width:32.6666666667%;
+    }
+    .span_2_3 {
+        width:66.3333333333%;
+    }
+    .span_3_3 {
+        margin-left:0;
+        width:100%;
+    }
+
+    .span_1_4 {
+        width:24.25%;
+    }
+    .span_2_4 {
+        width:49.5%;
+    }
+    .span_3_4 {
+        width:74.75%;
+    }
+    .span_4_4 {
+        margin-left:0;
+        width:100%;
+    }
+}

@@ -5,14 +5,14 @@
 </header>
 <section class="main-content">
     <ul>
-        <div ng-repeat="day in days">
-            <li class="list-divider">{{ day.desc }}</li>
-            <li ng-repeat="event in day.events" ng-click="selectEvent($parent.$index, $index)"><small>{{ event.time }}</small>{{ event.name }}</li>
+        <div ng-repeat="(day, evts) in events">
+            <li class="list-divider">{{ day }}</li>
+            <li ng-repeat="event in evts" ng-click="selectEvent(event)"><small>{{ event.time }}</small>{{ event.name }}</li>
         </div>
     </ul>
 </section>
-<footer class="gray">
-    <a href="#/event/add"><i class="icon ion-plus-round"></i></a>
-    <i class="icon ion-eye"></i>
-    <i class="icon ion-search"></i>
+<footer class="gray row">
+    <a class="col span_1_3" href="#/events/add"><i class="icon ion-plus-round"></i></a>
+    <a class="col span_1_3" href="#/events/add"><i class="icon ion-eye"></i></a>
+    <a class="col span_1_3" href="#/events/add"><i class="icon ion-search"></i></a>
 </footer>
