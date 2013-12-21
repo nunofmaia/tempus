@@ -37,22 +37,22 @@ var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'dire
             templateUrl: 'partials/homescreen.html',
             controller: 'HomeCtrl'
         })
-	.when('/listen', {
+        .when('/listen', {
             templateUrl: 'partials/micro_standby.html',
             controller: 'ListenCtrl'
         })
-	.when('/listen/listened', {
+        .when('/listen/listened', {
             templateUrl: 'partials/micro_listened.html',
             controller: 'ListenCtrl'
         })
         .otherwise({
             redirectTo: 'lockscreen'
         })
-	.when('/listen/add-event', {
+        .when('/listen/add-event', {
             templateUrl: 'partials/add_speech_event.html',
             controller: 'ListenCtrl'
         })
-    .otherwise({
+        .otherwise({
             redirectTo: 'lockscreen'
         })
     }]);

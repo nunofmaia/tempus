@@ -59,30 +59,13 @@ module.controller('EventCtrl', function ($scope, $location, $routeParams, db) {
 
 });
 
-module.controller('EditEventCtrl', function ($scope, $location, $routeParams, db) {
-    var s = document.getElementById('select-edit');
-    var i = $scope.selectedEvent.event.frequency;
-    s.options[i].selected = true;
+module.controller('SettingsCtrl', function ($scope, settings) {
+    $scope.profile = settings.get('profile', 'current');
 
-    $scope.name = $scope.selectedEvent.event.name;
-    $scope.date = $scope.selectedEvent.event.date;
-    $scope.time = $scope.selectedEvent.event.time;
-    $scope.place = $scope.selectedEvent.event.place;
-
-    $scope.save = function () {
-        console.log($scope.name);
-        $scope.selectedEvent.event.name = $scope.name;       
-        $scope.selectedEvent.event.date = $scope.date;       
-        $scope.selectedEvent.event.time = $scope.time;       
-        $scope.selectedEvent.event.place = $scope.place;       
-        $scope.selectedEvent.event.frequency = s.selectedIndex;       
-
-        $scope.back();
-    };
-
-});
-
-module.controller('SettingsCtrl', function ($scope) {
+    $scope.$watch('profile', function (newVal, oldVal) {
+        console.log(newVal, oldVal);
+        settings.update('profile', 'current', newVal);
+    });
 
 });
 
@@ -129,85 +112,57 @@ module.controller('ListenCtrl', function ($scope, $location, $timeout) {
 
 });
 
-module.controller('AppCtrl', function ($scope, $location) {
+module.controller('AppCtrl', function ($scope, $rootScope, $location, $history) {
     var index = 0;
     $scope.menus = ["events", "tasks", "notifications", "settings"]
     $scope.menu = $scope.menus[index];
 
     $scope.hourFormat = 'HH:mm';
     $scope.dateFormat = 'EEEE, MMMM dd';
-    
-    $scope.selectedEvent = null;
-    
-    $scope.days = [
-        {
-            desc: 'Today',
-            events: [
-                {
-                    name: 'Dinner with Jennifer',
-                    time: '20:00',
-                    date: '2013-12-13',
-                    place: 'Sesame Street',
-                    frequency: 2
-                }
-            ]
-        },
-        {
-            desc: 'Tomorrow',
-            events: [
-                {
-                    name: 'Christmas party',
-                    time: '09:00',
-                    date: '2013-12-14',
-                    place: 'Hot Club',
-                    frequency: 3
-                }
-            ]
+
+
+    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+        if (!$history.init($location.path())) {
+            $history.push($location.path());
         }
-    ];
 
-    $scope.removeEvent = function () {
-        var p = $scope.selectedEvent.parent;
-        var c = $scope.selectedEvent.child;
-        $scope.days[p].events.splice(c, 1);
-
-        $scope.selectedEvent = undefined;
-
-        window.history.go(-2);
-    };
+        $history.dump();
+    });
 
     $scope.back = function () {
         var path = $location.path();
         if (path != '/home') {
-            window.history.back(); 
+            $history.pop();
         }
     };
-    
+
     $scope.unlock = function () {
         var path = $location.path();
+        $history.erase();
+
         if (path != '/lockscreen') {
-            $location.path('/lockscreen').replace();
+            $history.push('/lockscreen');
         } else {
             $scope.menu = 'events';
             index = 0;
-            $location.path('/home').replace();
+            $history.push('/home');
         }
     }
-    
+
     $scope.speak = function () {
         var path = $location.path();
         if (path != '/lockscreen') {
             $location.path('/listen');
         }
     }
-   
+
 
     $scope.nextMenu = function () {
         index = (index + 1) % $scope.menus.length;
         $scope.menu = $scope.menus[index];
     };
 
-    $scope.profile = "default";
+    //$scope.profile = "default";
 
     $scope.changeProfile = function (profile) {
         $scope.profile = profile;
