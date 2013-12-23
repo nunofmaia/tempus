@@ -25,6 +25,14 @@ var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'dire
             templateUrl: 'partials/delete_event.html',
             controller: 'EventCtrl'
         })
+		.when('/tasks/edit', {
+            templateUrl: 'partials/edit_task.html',
+            controller: 'TaskCtrl'
+        })
+		.when('/tasks/delete', {
+            templateUrl: 'partials/delete_task.html',
+            controller: 'TaskCtrl'
+        })
         .when('/settings', {
             templateUrl: 'partials/settings.html',
             controller: 'SettingsCtrl'

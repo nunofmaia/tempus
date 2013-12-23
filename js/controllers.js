@@ -73,6 +73,10 @@ module.controller('HomeCtrl', function ($scope) {
 
 });
 
+module.controller('TaskCtrl', function ($scope) {
+
+});
+
 module.controller('ListenCtrl', function ($scope, $location, $timeout) {
 
     $scope.name = 'Meeting with John';
