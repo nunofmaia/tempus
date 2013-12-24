@@ -49,7 +49,7 @@ header > small {
 }
 
 .main-content.no-footer {
-    height: 230px;
+    height: 205px;
 }
 
 .main-content p {
@@ -299,7 +299,7 @@ input[type="date"]::-webkit-inner-spin-button,
 input[type="time"]::-webkit-inner-spin-button{
     /* Your CSS here */
     display: none;
-    
+
 }
 
 select {
@@ -316,4 +316,33 @@ select + small {
   padding-top: 7px;
   font-size: 10px;
   color: #aaa;
+}
+
+#keyboard {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.keys button {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #ddd;
+    border-bottom: 1px solid white;
+    font-size: 14px;
+    outline: none;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+textarea {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    height: 55px;
+    resize: none;
+    outline: none;
 }

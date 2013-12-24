@@ -60,11 +60,11 @@ module.controller('EventCtrl', function ($scope, $location, $routeParams, db) {
 });
 
 module.controller('SettingsCtrl', function ($scope, settings) {
-    $scope.profile = settings.get('profile', 'current');
+    $scope.profile = settings.get('profile');
 
     $scope.$watch('profile', function (newVal, oldVal) {
         console.log(newVal, oldVal);
-        settings.update('profile', 'current', newVal);
+        settings.update('profile', newVal);
     });
 
 });

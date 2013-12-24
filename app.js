@@ -52,6 +52,12 @@ var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'dire
             templateUrl: 'partials/add_speech_event.html',
             controller: 'ListenCtrl'
         })
+        .when('/keyboard', {
+            templateUrl: 'partials/keyboard.html',
+            controller: function ($scope) {
+                $scope.message = '';
+            }
+        })
         .otherwise({
             redirectTo: 'lockscreen'
         })

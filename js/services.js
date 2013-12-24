@@ -57,27 +57,21 @@ module.factory('_', function () {
 
 module.service('settings', function (_) {
     var settings = {
-        profile:  {
-            current: 'default'
-        }
+        profile:  'default'
     };
 
     return {
-        get: function (c, k) {
+        get: function (c) {
             if (c in settings) {
-                if (k in settings[c]) {
-                    return settings[c][k];
-                }
+                return settings[c];
             }
 
             return null;
         },
 
-        update: function (c, k, o) {
+        update: function (c, o) {
             if (c in settings) {
-                if (k in settings[c]) {
-                    settings[c][k] = o;
-                }
+                settings[c] = o;
             }
         }
     }
