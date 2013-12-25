@@ -1,0 +1,15 @@
+<header>
+	<i class="icon ion-ios7-bell" style="color: rgb(138, 138, 138); float: left; padding-left: 10px; padding-top: 2px;"></i>
+	<small current-time="hourFormat"></small>
+	<i class="icon ion-battery-full" style="color: rgb(138, 138, 138); float: right; padding-right: 10px; padding-top: 2px;"></i>
+</header>
+<section class="main-content">
+	<p>Note</p>
+	<textarea rows="10" cols="40" type="text" placeholder="Write Note Here" ng-model="evt.name" style = "height:150px">
+	</textarea>
+    <!--input type="text" placeholder="Event name" value="{{ evt.name }}" ng-model="evt.name"/-->
+</section>
+<footer class="gray row">
+    <div class="col span_2_4" ng-click="back()"><i class="icon ion-close-round"></i></div>
+	<div class="col span_2_4" ng-click="save(evt)"><i class="icon ion-checkmark-round"></i></div>
+</footer>

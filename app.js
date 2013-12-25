@@ -41,6 +41,14 @@ var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'dire
             templateUrl: 'partials/profiles_settings.html',
             controller: 'SettingsCtrl'
         })
+		.when('/notes/edit', {
+            templateUrl: 'partials/edit_note.html',
+            controller: 'NoteCtrl'
+        })
+		.when('/notes/delete', {
+            templateUrl: 'partials/delete_note.html',
+            controller: 'NoteCtrl'
+        })
         .when('/home', {
             templateUrl: 'partials/homescreen.html',
             controller: 'HomeCtrl'
