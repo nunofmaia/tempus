@@ -33,6 +33,10 @@ var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'dire
             templateUrl: 'partials/add_task.html',
             controller: 'TaskCtrl'
         })
+        .when('/tasks/categories', {
+            templateUrl: 'partials/tasks_views.html',
+            controller: 'TasksCtrl'
+        })
         .when('/tasks/:id', {
             templateUrl: 'partials/task.html',
             controller: 'TaskCtrl'
@@ -44,10 +48,6 @@ var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'dire
 		.when('/tasks/:id/delete', {
             templateUrl: 'partials/delete_task.html',
             controller: 'TaskCtrl'
-        })
-        .when('/tasks/categories', {
-            templateUrl: 'partials/tasks_views.html',
-            controller: 'TasksCtrl'
         })
         .when('/notes', {
             templateUrl: 'partials/notes.html',

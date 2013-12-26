@@ -1,1 +1,14 @@
-<p>{{ task.name }}</p>
+<header>
+	<i class="icon ion-ios7-bell" style="color: rgb(138, 138, 138); float: left; padding-left: 10px; padding-top: 2px;"></i>
+	<small current-time="hourFormat"></small>
+	<i class="icon ion-battery-full" style="color: rgb(138, 138, 138); float: right; padding-right: 10px; padding-top: 2px;"></i>
+</header>
+<section class="main-content">
+	<h3>{{ task.name }}</h3>
+	<p><i class="icon ion-android-clock"></i>{{ task.dueDate }}, {{ task.dueTime }}</p>
+	<p><i class="icon ion-ios7-bell"></i>No notifications</p>
+</section>
+<footer class="gray row">
+	<a class="col span_2_4" href="#/tasks/{{task.id}}/edit"><i class="icon ion-edit"></i></a>
+    <a class="col span_2_4" href="#/tasks/{{task.id}}/delete"><i class="icon ion-trash-a"></i></a>
+</footer>

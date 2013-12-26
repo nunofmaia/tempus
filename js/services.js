@@ -103,19 +103,22 @@ module.service('db', function (_) {
                 id: 1,
                 name: 'Buy milk',
                 dueDate: '2014-01-01',
-                dueTime: '15:00'
+                dueTime: '15:00',
+                done: false
             },
             {
                 id: 2,
                 name: 'Buy soda',
                 dueDate: '2014-01-01',
-                dueTime: '15:00'
+                dueTime: '15:00',
+                done: false
             },
             {
                 id: 3,
                 name: 'Pick up the kids',
                 dueDate: '2014-01-01',
-                dueTime: '15:00'
+                dueTime: '15:00',
+                done: false
             }
         ],
 
