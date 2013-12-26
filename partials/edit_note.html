@@ -3,15 +3,22 @@
 	<small current-time="hourFormat"></small>
 	<i class="icon ion-battery-full" style="color: rgb(138, 138, 138); float: right; padding-right: 10px; padding-top: 2px;"></i>
 </header>
-<section class="main-content">
-	<p>Title:</p>
-    <input type="text" placeholder="Title" value="{{ note.title }}" ng-model="note.title">
-	<p>Content:</p>
-	<div class="row">
-		<textarea class="col span_3_3" style="padding: 0 6px" ng-model="note.content"></textarea>
-	</div>
-</section>
-<footer class="gray row">
-    <div class="col span_2_4" ng-click="back()"><i class="icon ion-close-round"></i></div>
-	<div class="col span_2_4" ng-click="save(note)"><i class="icon ion-checkmark-round"></i></div>
-</footer>
+<div ng-show="!editing">
+	<section class="main-content">
+		<p>Title:</p>
+		<input type="text" placeholder="Title" value="{{ note.title }}" ng-model="note.title" ng-click="editField('title', 'text')">
+		<p>Content:</p>
+		<div class="row">
+			<textarea class="col span_3_3" style="padding: 0 6px" ng-model="note.content" ng-click="editField('content', 'text')"></textarea>
+		</div>
+	</section>
+	<footer class="gray row">
+		<div class="col span_2_4" ng-click="back()"><i class="icon ion-close-round"></i></div>
+		<div class="col span_2_4" ng-click="save(note)"><i class="icon ion-checkmark-round"></i></div>
+	</footer>
+</div>
+<div ng-show="!!editing">
+	<section class="main-content no-footer">
+		<div keyboard message="note[editable]" type="{{fieldType}}" return="editing"></div>
+	</section>
+</div>

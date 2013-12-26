@@ -20,6 +20,9 @@ module.controller('EventCtrl', function ($scope, $routeParams, $history, db) {
 	var date = $routeParams.date;
 	var id = $routeParams.id;
 	$scope.evt = db.getOne('events', id);
+    $scope.editing = false;
+    $scope.editable = '';
+    $scope.fieldType = '';
 
     var s = document.getElementById('select-add');
 
@@ -57,6 +60,12 @@ module.controller('EventCtrl', function ($scope, $routeParams, $history, db) {
     	$history.pop(2);
     };
 
+    $scope.editField = function (f, t) {
+        $scope.editable = f;
+        $scope.fieldType = t;
+        $scope.editing = true;
+    }
+
 });
 
 module.controller('TasksCtrl', function ($scope, $location, db, settings) {
@@ -79,6 +88,9 @@ module.controller('TasksCtrl', function ($scope, $location, db, settings) {
 module.controller('TaskCtrl', function ($scope, $routeParams, db, $history) {
     var id = $routeParams.id;
     $scope.task = db.getOne('tasks', id);
+    $scope.editing = false;
+    $scope.editable = '';
+    $scope.fieldType = '';
 
     $scope.add = function (t) {
         db.add('tasks', t);
@@ -95,6 +107,12 @@ module.controller('TaskCtrl', function ($scope, $routeParams, db, $history) {
         $history.pop(2);
     };
 
+    $scope.editField = function (f, t) {
+        $scope.editable = f;
+        $scope.fieldType = t;
+        $scope.editing = true;
+    }
+
 });
 
 module.controller('NotesCtrl', function ($scope, $history, db) {
@@ -109,6 +127,9 @@ module.controller('NotesCtrl', function ($scope, $history, db) {
 module.controller('NoteCtrl', function ($scope, $routeParams, $history, db) {
     var id = $routeParams.id;
     $scope.note = db.getOne('notes', id);
+    $scope.editing = false;
+    $scope.editable = '';
+    $scope.fieldType = '';
 
     $scope.add = function (n) {
         db.add('notes', n);
@@ -124,6 +145,12 @@ module.controller('NoteCtrl', function ($scope, $routeParams, $history, db) {
         db.delete('notes', n.id);
         $history.pop(2);
     };
+
+    $scope.editField = function (f, t) {
+        $scope.editable = f;
+        $scope.fieldType = t;
+        $scope.editing = true;
+    }
 });
 
 module.controller('SettingsCtrl', function ($scope, settings) {

@@ -3,30 +3,35 @@
 	<small current-time="hourFormat"></small>
 	<i class="icon ion-battery-full" style="color: rgb(138, 138, 138); float: right; padding-right: 10px; padding-top: 2px;"></i>
 </header>
-<section class="main-content">
-	<p>Name:</p>
-    <input type="text" placeholder="Event name" value="{{ evt.name }}" ng-model="evt.name"/>
-	<p>Date:</p>
-    <input type="date" placeholder="Event date" value="{{ evt.date }}" ng-model="evt.date"/>
-	<p>Frequency:</p>
-	<select id="select-edit">
-		<option value="none">None</option>
-		<option value="daily">Daily</option>
-		<option value="weekly">Weekly</option>
-		<option value="monthly">Monthly</option>
-		<option value="yearly">Yearly</option>
- 	</select>
-	<small>&#x25bc;</small>
-	<p>Time:</p>
-    <input type="time" value="{{ evt.time }}" ng-model="evt.time" />
-	<p>Location:</p>
-    <input type="text" placeholder="Event location" value="{{ evt.place }}" ng-model="evt.place" />
-	<p>Notifications:</p>
-	<ul>
-		<li><i class="ion-plus-round"></i> Add notification</li>
-	</ul>
-</section>
-<footer class="gray row">
-    <div class="col span_2_4" ng-click="back()"><i class="icon ion-close-round"></i></div>
-	<div class="col span_2_4" ng-click="save(evt)"><i class="icon ion-checkmark-round"></i></div>
-</footer>
+<div ng-show="!editing">
+	<section class="main-content">
+		<p>Name:</p>
+	    <input type="text" placeholder="Event name" value="{{ evt.name }}" ng-model="evt.name" ng-click="editField('name', 'text')">
+		<p>Date:</p>
+	    <input type="date" placeholder="Event date" value="{{ evt.date }}" ng-model="evt.date" ng-click="editField('date', 'time')">
+		<p>Frequency:</p>
+		<select id="select-edit">
+			<option value="none">None</option>
+			<option value="daily">Daily</option>
+			<option value="weekly">Weekly</option>
+			<option value="monthly">Monthly</option>
+			<option value="yearly">Yearly</option>
+	 	</select>
+		<small>&#x25bc;</small>
+		<p>Time:</p>
+	    <input type="time" value="{{ evt.time }}" ng-model="evt.time" ng-click="editField('time', 'time')">
+		<p>Location:</p>
+	    <input type="text" placeholder="Event location" value="{{ evt.place }}" ng-model="evt.place" ng-click="editField('place', 'text')">
+		<p>Notifications:</p>
+		<ul>
+			<li><i class="ion-plus-round"></i> Add notification</li>
+		</ul>
+	</section>
+	<footer class="gray row">
+	    <div class="col span_2_4" ng-click="back()"><i class="icon ion-close-round"></i></div>
+		<div class="col span_2_4" ng-click="save(evt)"><i class="icon ion-checkmark-round"></i></div>
+	</footer>
+</div>
+<div ng-show="editing">
+	<div keyboard="" message="evt[editable]" type="{{ fieldType }}" return="editing"></div>
+</div>

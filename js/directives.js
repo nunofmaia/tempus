@@ -28,10 +28,12 @@ module.directive('currentTime', function($timeout, dateFilter) {
     }
 });
 
-module.directive('keyboard', function ($location) {
+module.directive('keyboard', function () {
     return {
         scope: {
-            message: '='
+            message: '=',
+            type: '@',
+            return: '='
         },
         controller: function ($scope) {
             $scope.keys = [];
@@ -60,16 +62,28 @@ module.directive('keyboard', function ($location) {
                     $scope.keys[key].tag = $scope.keys[key].tag.toLowerCase();
                 }
             };
-        },
-        templateUrl: function () {
-            var search = $location.search();
-            console.log(search);
-            if (search.type === 'time') {
-                return 'partials/keyboard_time_template.html';
-            } else if (search.type === 'text') {
-                return 'partials/keyboard_text_template.html';
+
+            this.return = function () {
+                $scope.return = !$scope.return;
             }
+
+            $scope.getTemplate = function () {
+                if ($scope.type === 'time') {
+                    return 'partials/keyboard_time_template.html';
+                } else if ($scope.type === 'text') {
+                    return 'partials/keyboard_text_template.html';
+                }
+            };
         },
+        template: '<div ng-include="getTemplate()"></div>',
+        // templateUrl: function () {
+        //     console.log($scope.type);
+        //     if (type === 'time') {
+        //         return 'partials/keyboard_time_template.html';
+        //     } else if (type === 'text') {
+        //         return 'partials/keyboard_text_template.html';
+        //     }
+        // },
         link: function (scope, element, attr) {
 
         }
@@ -117,6 +131,7 @@ module.directive('key', function ($timeout) {
                     switch (character) {
                         case '_':
                             console.log('space');
+                            keyboardCtrl.addLetter(" ");
                             break;
                         case 'del':
                             console.log('delete');
@@ -134,6 +149,7 @@ module.directive('key', function ($timeout) {
                             break;
                         case 'ret':
                             console.log('return');
+                            keyboardCtrl.return();
                             break;
                     }
                 } else {
