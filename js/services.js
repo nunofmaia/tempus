@@ -57,7 +57,8 @@ module.factory('_', function () {
 
 module.service('settings', function (_) {
     var settings = {
-        profile:  'default'
+        profile:  'default',
+        category: 'all'
     };
 
     return {

@@ -59,13 +59,18 @@ module.controller('EventCtrl', function ($scope, $routeParams, $history, db) {
 
 });
 
-module.controller('TasksCtrl', function ($scope, $location, db) {
+module.controller('TasksCtrl', function ($scope, $location, db, settings) {
     var tasks = db.getAll('tasks');
     $scope.tasks = tasks;
     // $scope.tasks = _.groupBy(tasks, function (e) {
     //     return e.id;
     // });
+    $scope.category = settings.get('category');
 
+    $scope.$watch('category', function (newVal, oldVal) {
+        console.log(newVal, oldVal);
+        settings.update('category', newVal);
+    });
     $scope.selectTask = function (e) {
         $location.path('/tasks/' + e.id);
     }
