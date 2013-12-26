@@ -149,7 +149,7 @@ ul  li.list-divider {
 }
 
 ul  li {
-    padding: 8px 4px;
+    padding: 10px 4px;
     font-size: 13px;
     border-bottom: 1px solid rgb(240, 240, 240);
     border-left: none;
@@ -159,6 +159,11 @@ ul  li {
 ul  li  small {
     padding-right: 5px;
     font-size: 11px;
+}
+
+ul li i.icon {
+    font-size: 16px;
+    padding: 0 6px;
 }
 
 .main-content input {

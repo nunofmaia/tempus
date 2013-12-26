@@ -111,7 +111,7 @@ module.service('db', function (_) {
                 name: 'Buy soda',
                 dueDate: '2014-01-01',
                 dueTime: '15:00',
-                done: false
+                done: true
             },
             {
                 id: 3,
