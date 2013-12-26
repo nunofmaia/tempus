@@ -99,11 +99,32 @@ module.service('db', function (_) {
         ],
 
         tasks: [
-
+            {
+                id: 1,
+                name: 'Buy milk',
+                dueDate: '2014-01-01',
+                dueTime: '15:00'
+            },
+            {
+                id: 2,
+                name: 'Buy soda',
+                dueDate: '2014-01-01',
+                dueTime: '15:00'
+            },
+            {
+                id: 3,
+                name: 'Pick up the kids',
+                dueDate: '2014-01-01',
+                dueTime: '15:00'
+            }
         ],
 
         notes: [
-
+            {
+                id: 1,
+                title: 'First note',
+                content: 'Some random text'
+            }
         ]
     }
     return {

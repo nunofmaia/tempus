@@ -16,7 +16,7 @@ module.controller('EventsCtrl', function ($scope, $location, db, _) {
 
 });
 
-module.controller('EventCtrl', function ($scope, $location, $routeParams, db) {
+module.controller('EventCtrl', function ($scope, $routeParams, $history, db) {
 	var date = $routeParams.date;
 	var id = $routeParams.id;
 	$scope.evt = db.getOne('events', id);
@@ -54,9 +54,71 @@ module.controller('EventCtrl', function ($scope, $location, $routeParams, db) {
 
     $scope.delete = function (e) {
     	db.delete('events', e.id);
-    	$location.path('/events').replace();
+    	$history.pop(2);
     };
 
+});
+
+module.controller('TasksCtrl', function ($scope, $location, db) {
+    var tasks = db.getAll('tasks');
+    $scope.tasks = tasks;
+    // $scope.tasks = _.groupBy(tasks, function (e) {
+    //     return e.id;
+    // });
+
+    $scope.selectTask = function (e) {
+        $location.path('/tasks/' + e.id);
+    }
+});
+
+module.controller('TaskCtrl', function ($scope, $routeParams, db, $history) {
+    var id = $routeParams.id;
+    $scope.task = db.getOne('tasks', id);
+
+    $scope.add = function (t) {
+        db.add('tasks', t);
+        $scope.back();
+    };
+
+    $scope.save = function (t) {
+        db.update('tasks', t);
+        $scope.back();
+    };
+
+    $scope.delete = function (t) {
+        db.delete('tasks', t.id);
+        $history.pop(2);
+    };
+
+});
+
+module.controller('NotesCtrl', function ($scope, $history, db) {
+    var notes = db.getAll('notes');
+    $scope.notes = notes;
+
+    $scope.selectNote = function (n) {
+        $history.push('/notes/' + n.id);
+    }
+});
+
+module.controller('NoteCtrl', function ($scope, $routeParams, $history, db) {
+    var id = $routeParams.id;
+    $scope.note = db.getOne('notes', id);
+
+    $scope.add = function (n) {
+        db.add('notes', n);
+        $scope.back();
+    };
+
+    $scope.save = function (n) {
+        db.update('notes', n);
+        $scope.back();
+    };
+
+    $scope.delete = function (n) {
+        db.delete('notes', n.id);
+        $history.pop(2);
+    };
 });
 
 module.controller('SettingsCtrl', function ($scope, settings) {
@@ -70,14 +132,6 @@ module.controller('SettingsCtrl', function ($scope, settings) {
 });
 
 module.controller('HomeCtrl', function ($scope) {
-
-});
-
-module.controller('TaskCtrl', function ($scope) {
-
-});
-
-module.controller('NoteCtrl', function ($scope) {
 
 });
 
@@ -122,7 +176,7 @@ module.controller('ListenCtrl', function ($scope, $location, $timeout) {
 
 module.controller('AppCtrl', function ($scope, $rootScope, $location, $history) {
     var index = 0;
-    $scope.menus = ["events", "tasks", "notifications", "settings"]
+    $scope.menus = ["events", "tasks", "notes", "notifications", "settings"]
     $scope.menu = $scope.menus[index];
 
     $scope.hourFormat = 'HH:mm';

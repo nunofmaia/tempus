@@ -12,8 +12,16 @@
             </a>
         </div>
         <div class="menu-icon" ng-switch-when="tasks">
-            <i class="icon ion-checkmark"></i>
-            <p>Tasks</p>
+            <a href="#/tasks">
+                <i class="icon ion-checkmark"></i>
+                <p>Tasks</p>
+            </a>
+        </div>
+        <div class="menu-icon" ng-switch-when="notes">
+            <a href="#/notes">
+                <i class="icon ion-document-text"></i>
+                <p>Notes</p>
+            </a>
         </div>
         <div class="menu-icon" ng-switch-when="notifications">
             <i class="icon ion-ios7-bell"></i>
@@ -27,6 +35,3 @@
         </div>
     </div>
 </section>
-<!--<footer>
-    <p ng-click="nextMenu()">Next</p>
-    </footer>-->

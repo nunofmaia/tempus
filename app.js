@@ -25,13 +25,45 @@ var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'dire
             templateUrl: 'partials/delete_event.html',
             controller: 'EventCtrl'
         })
-		.when('/tasks/edit', {
+        .when('/tasks', {
+            templateUrl: 'partials/tasks.html',
+            controller: 'TasksCtrl'
+        })
+        .when('/tasks/add', {
+            templateUrl: 'partials/add_task.html',
+            controller: 'TaskCtrl'
+        })
+        .when('/tasks/:id', {
+            templateUrl: 'partials/task.html',
+            controller: 'TaskCtrl'
+        })
+		.when('/tasks/:id/edit', {
             templateUrl: 'partials/edit_task.html',
             controller: 'TaskCtrl'
         })
-		.when('/tasks/delete', {
+		.when('/tasks/:id/delete', {
             templateUrl: 'partials/delete_task.html',
             controller: 'TaskCtrl'
+        })
+        .when('/notes', {
+            templateUrl: 'partials/notes.html',
+            controller: 'NotesCtrl'
+        })
+        .when('/notes/add', {
+            templateUrl: 'partials/add_note.html',
+            controller: 'NoteCtrl'
+        })
+        .when('/notes/:id', {
+            templateUrl: 'partials/note.html',
+            controller: 'NoteCtrl'
+        })
+        .when('/notes/:id/edit', {
+            templateUrl: 'partials/edit_note.html',
+            controller: 'NoteCtrl'
+        })
+        .when('/notes/:id/delete', {
+            templateUrl: 'partials/delete_note.html',
+            controller: 'NoteCtrl'
         })
         .when('/settings', {
             templateUrl: 'partials/settings.html',
@@ -40,14 +72,6 @@ var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'dire
         .when('/settings/profiles', {
             templateUrl: 'partials/profiles_settings.html',
             controller: 'SettingsCtrl'
-        })
-		.when('/notes/edit', {
-            templateUrl: 'partials/edit_note.html',
-            controller: 'NoteCtrl'
-        })
-		.when('/notes/delete', {
-            templateUrl: 'partials/delete_note.html',
-            controller: 'NoteCtrl'
         })
         .when('/home', {
             templateUrl: 'partials/homescreen.html',

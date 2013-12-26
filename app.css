@@ -345,4 +345,6 @@ textarea {
     height: 55px;
     resize: none;
     outline: none;
+    background: none;
+    font-size: 13px;
 }

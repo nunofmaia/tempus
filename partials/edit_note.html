@@ -4,12 +4,14 @@
 	<i class="icon ion-battery-full" style="color: rgb(138, 138, 138); float: right; padding-right: 10px; padding-top: 2px;"></i>
 </header>
 <section class="main-content">
-	<p>Note</p>
-	<textarea rows="10" cols="40" type="text" placeholder="Write Note Here" ng-model="evt.name" style = "height:150px">
-	</textarea>
-    <!--input type="text" placeholder="Event name" value="{{ evt.name }}" ng-model="evt.name"/-->
+	<p>Title:</p>
+    <input type="text" placeholder="Title" value="{{ note.title }}" ng-model="note.title">
+	<p>Content:</p>
+	<div class="row">
+		<textarea class="col span_3_3" style="padding: 0 6px" ng-model="note.content"></textarea>
+	</div>
 </section>
 <footer class="gray row">
     <div class="col span_2_4" ng-click="back()"><i class="icon ion-close-round"></i></div>
-	<div class="col span_2_4" ng-click="save(evt)"><i class="icon ion-checkmark-round"></i></div>
+	<div class="col span_2_4" ng-click="save(note)"><i class="icon ion-checkmark-round"></i></div>
 </footer>

@@ -1,0 +1,16 @@
+<header>
+	<i class="icon ion-ios7-bell" style="color: rgb(138, 138, 138); float: left; padding-left: 10px; padding-top: 2px;"></i>
+	<small current-time="hourFormat"></small>
+    <i class="icon ion-battery-full" style="color: rgb(138, 138, 138); float: right; padding-right: 10px; padding-top: 2px;"></i>
+</header>
+<section class="main-content">
+    <ul>
+        <li ng-repeat="task in tasks" ng-click="selectTask(task)">{{ task.name }}</li>
+    </ul>
+</section>
+<footer class="gray row">
+    <a class="col span_1_3" href="#/tasks/add"><i class="icon ion-plus-round"></i></a>
+    <a class="col span_1_3" href="#/tasks/add"><i class="icon ion-eye"></i></a>
+    <a class="col span_1_3" href="#/tasks/add"><i class="icon ion-search"></i></a>
+
+</footer>
