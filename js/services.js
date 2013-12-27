@@ -105,6 +105,7 @@ module.service('db', function (_) {
                 name: 'Buy milk',
                 dueDate: '2014-01-01',
                 dueTime: '15:00',
+                category: 'shopping',
                 done: false
             },
             {
@@ -112,6 +113,7 @@ module.service('db', function (_) {
                 name: 'Buy soda',
                 dueDate: '2014-01-01',
                 dueTime: '15:00',
+                category: 'shopping',
                 done: true
             },
             {
@@ -119,6 +121,7 @@ module.service('db', function (_) {
                 name: 'Pick up the kids',
                 dueDate: '2014-01-01',
                 dueTime: '15:00',
+                category: 'none',
                 done: false
             }
         ],

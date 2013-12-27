@@ -72,6 +72,8 @@ module.directive('keyboard', function () {
                     return 'partials/keyboard_time_template.html';
                 } else if ($scope.type === 'text') {
                     return 'partials/keyboard_text_template.html';
+                } else if ($scope.type === 'date') {
+                    return 'partials/keyboard_date_template.html';
                 }
             };
         },
@@ -106,7 +108,7 @@ module.directive('key', function ($timeout) {
             var wasClicked = false;
             var isUpper = false;
 
-            if (scope.tag === 'up' || scope.tag === 'del' || scope.tag === 'ret' || scope.tag === '_') {
+            if (scope.tag === '⇪' || scope.tag === '⌫' || scope.tag === '⏎') {
                 isSingleKey = true;
             } else {
                 keyboardCtrl.addKey(scope);
@@ -120,7 +122,12 @@ module.directive('key', function ($timeout) {
                 if (!wasClicked && !isSingleKey) {
                     $timeout(function () {
                         console.log(character);
-                        keyboardCtrl.addLetter(character);
+                        if (character === '␣') {
+                            keyboardCtrl.addLetter(' ');
+                        } else {
+                            keyboardCtrl.addLetter(character);
+                        }
+
                         index = 0;
                         wasClicked = false;
                     }, 1000);
@@ -128,16 +135,13 @@ module.directive('key', function ($timeout) {
                 }
                 if (isSingleKey) {
                     character = scope.tag;
+                    console.log(character);
                     switch (character) {
-                        case '_':
-                            console.log('space');
-                            keyboardCtrl.addLetter(" ");
-                            break;
-                        case 'del':
+                        case '⌫':
                             console.log('delete');
                             keyboardCtrl.removeLetter();
                             break;
-                        case 'up':
+                        case '⇪':
                             console.log('uppercase');
                             if (isUpper) {
                                 keyboardCtrl.lowercase();
@@ -147,7 +151,7 @@ module.directive('key', function ($timeout) {
                                 isUpper = true;
                             }
                             break;
-                        case 'ret':
+                        case '⏎':
                             console.log('return');
                             keyboardCtrl.return();
                             break;

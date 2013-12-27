@@ -3,24 +3,29 @@
 	<small current-time="hourFormat"></small>
 	<i class="icon ion-battery-full" style="color: rgb(138, 138, 138); float: right; padding-right: 10px; padding-top: 2px;"></i>
 </header>
-<section class="main-content">
-	<p>Name:</p>
-	<input type="text" placeholder="Task name" ng-model="task.name"/>
-	<p>Due date:</p>
-	<div class="row">
-		<div class="col span_2_4">
-			<input type="date" ng-model="task.dueDate" />
+<div ng-show="!editing">
+	<section class="main-content">
+		<p>Name:</p>
+		<input type="text" placeholder="Task name" ng-model="task.name" ng-click="editField('name', 'text')">
+		<p>Due date:</p>
+		<div class="row">
+			<div class="col span_2_4">
+				<input type="date" ng-model="task.dueDate" ng-click="editField('dueDate', 'date')" >
+			</div>
+			<div class="col span_2_4">
+				<input type="time" ng-model="task.dueTime" ng-click="editField('dueTime', 'time')">
+			</div>
 		</div>
-		<div class="col span_2_4">
-			<input type="time" ng-model="task.dueTime"/>
-		</div>
-	</div>
-	<p>Notifications:</p>
-	<ul>
-		<li><i class="ion-plus-round"></i> Add notification</li>
-	</ul>
-</section>
-<footer class="gray row">
-    <div class="col span_2_4" ng-click="back()"><i class="icon ion-close-round"></i></div>
-	<div class="col span_2_4"><i class="icon ion-checkmark-round" ng-click="add(task)"></i></div>
-</footer>
+		<p>Notifications:</p>
+		<ul>
+			<li><i class="ion-plus-round"></i> Add notification</li>
+		</ul>
+	</section>
+	<footer class="gray row">
+	    <div class="col span_2_4" ng-click="back()"><i class="icon ion-close-round"></i></div>
+		<div class="col span_2_4"><i class="icon ion-checkmark-round" ng-click="add(task)"></i></div>
+	</footer>
+</div>
+<div ng-show="editing">
+	<div keyboard="" message="task[editable]" type="{{ fieldType }}" return="editing"></div>
+</div>

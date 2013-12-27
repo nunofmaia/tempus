@@ -5,6 +5,10 @@ var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'dire
             templateUrl: 'partials/lockscreen.html',
             controller: 'LockscreenCtrl'
         })
+        .when('/notification', {
+            templateUrl: 'partials/notification.html',
+            controller: 'NotificationCtrl'
+        })
         .when('/events', {
             templateUrl: 'partials/events.html',
             controller: 'EventsCtrl'

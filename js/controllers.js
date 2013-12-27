@@ -4,6 +4,10 @@ module.controller('LockscreenCtrl', function ($scope) {
 
 });
 
+module.controller('NotificationCtrl', function ($scope) {
+
+});
+
 module.controller('EventsCtrl', function ($scope, $location, db, _) {
 	var events = db.getAll('events');
 	$scope.events = _.groupBy(events, function (e) {
@@ -19,7 +23,9 @@ module.controller('EventsCtrl', function ($scope, $location, db, _) {
 module.controller('EventCtrl', function ($scope, $routeParams, $history, db) {
 	var date = $routeParams.date;
 	var id = $routeParams.id;
-	$scope.evt = db.getOne('events', id);
+    var emptyEvent = { name: '', date: '', time: '', place: '', frequency: 0 };
+    var evt = db.getOne('events', id) || emptyEvent;
+	$scope.evt = $scope.clone(evt);
     $scope.editing = false;
     $scope.editable = '';
     $scope.fieldType = '';
@@ -79,6 +85,16 @@ module.controller('TasksCtrl', function ($scope, $location, db, settings) {
     $scope.$watch('category', function (newVal, oldVal) {
         console.log(newVal, oldVal);
         settings.update('category', newVal);
+        var c;
+        if (newVal === 'all') {
+            $scope.tasks = tasks;
+        } else {
+            $scope.tasks = _.filter(tasks, function (e) {
+                return e.category === newVal;
+            });
+
+        }
+        console.log($scope.tasks);
     });
     $scope.selectTask = function (e) {
         $location.path('/tasks/' + e.id);
@@ -87,7 +103,9 @@ module.controller('TasksCtrl', function ($scope, $location, db, settings) {
 
 module.controller('TaskCtrl', function ($scope, $routeParams, db, $history) {
     var id = $routeParams.id;
-    $scope.task = db.getOne('tasks', id);
+    var emptyTask = { name: '', dueDate: '', dueTime: '', done: false };
+    var task = db.getOne('tasks', id) || emptyTask;
+    $scope.task = $scope.clone(task);
     $scope.editing = false;
     $scope.editable = '';
     $scope.fieldType = '';
@@ -126,7 +144,9 @@ module.controller('NotesCtrl', function ($scope, $history, db) {
 
 module.controller('NoteCtrl', function ($scope, $routeParams, $history, db) {
     var id = $routeParams.id;
-    $scope.note = db.getOne('notes', id);
+    var emptyNote = { title: '', content: '' };
+    var note = db.getOne('notes', id) || emptyNote;
+    $scope.note = $scope.clone(note);
     $scope.editing = false;
     $scope.editable = '';
     $scope.fieldType = '';
@@ -250,15 +270,22 @@ module.controller('AppCtrl', function ($scope, $rootScope, $location, $history) 
         }
     }
 
+    $scope.clone = function (obj) {
+        if (null == obj || "object" != typeof obj) return obj;
+        var copy = obj.constructor();
+        for (var attr in obj) {
+            if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+        }
+        return copy;
+    }
+
 
     $scope.nextMenu = function () {
         index = (index + 1) % $scope.menus.length;
         $scope.menu = $scope.menus[index];
     };
 
-    //$scope.profile = "default";
-
-    $scope.changeProfile = function (profile) {
-        $scope.profile = profile;
+    $scope.notification = function () {
+        $history.push('/notification');
     }
 });
