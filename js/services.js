@@ -55,6 +55,10 @@ module.factory('_', function () {
     return window._;
 });
 
+module.factory('$speech', function () {
+    return window.annyang;
+});
+
 module.service('settings', function (_) {
     var settings = {
         profile:  'default',

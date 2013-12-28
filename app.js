@@ -87,18 +87,15 @@ var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'dire
         })
         .when('/listen', {
             templateUrl: 'partials/micro_standby.html',
-            controller: 'ListenCtrl'
+            controller: 'SpeechCtrl'
         })
         .when('/listen/listened', {
             templateUrl: 'partials/micro_listened.html',
-            controller: 'ListenCtrl'
-        })
-        .otherwise({
-            redirectTo: 'lockscreen'
+            controller: 'SpeechCtrl'
         })
         .when('/listen/add-event', {
             templateUrl: 'partials/add_speech_event.html',
-            controller: 'ListenCtrl'
+            controller: 'SpeechCtrl'
         })
         .when('/keyboard', {
             templateUrl: 'partials/keyboard.html',
@@ -108,7 +105,8 @@ var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'dire
         })
         .otherwise({
             redirectTo: 'lockscreen'
-        })
+        });
+
     }]);
 
 

@@ -187,7 +187,16 @@ module.controller('HomeCtrl', function ($scope) {
 
 });
 
-module.controller('ListenCtrl', function ($scope, $location, $timeout) {
+module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech) {
+
+    var commands = {
+        'yes': function () {
+            console.log('yes');
+        }
+    }
+
+    $speech.init(commands);
+    $speech.start();
 
     $scope.name = 'Meeting with John';
     $scope.time = '15:00';
