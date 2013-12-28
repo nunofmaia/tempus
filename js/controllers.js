@@ -187,12 +187,70 @@ module.controller('HomeCtrl', function ($scope) {
 
 });
 
-module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech) {
+module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech, $history, db) {
 
+    $scope.message = "What can I help you with?";
+    var obj = {};
     var commands = {
         'yes': function () {
             console.log('yes');
+            $speech.abort();
+
+            buildObj();
+        },
+        'no': function () {
+            console.log('no');
+            $scope.message = "What can I help you with?";
+            obj = {};
+        },
+        'schedule a *evt at *place': function (evt, place) {
+            console.log(evt, place);
+            $scope.message = '"Schedule a ' + evt + ' at ' + place + '". Do you confirm?';
+
+            obj.type = 'event';
+            obj.name = capitaliseFirstLetter(evt);
+            obj.place = capitaliseFirstLetter(place);
+        },
+        'remind me to *task': function (task) {
+            console.log(task);
+            $scope.message = 'Remind me to ' + task + '. Do you confirm?';
+
+            obj.type = 'task';
+            obj.name = capitaliseFirstLetter(task);
         }
+    };
+
+    function buildObj() {
+        if (obj.type === 'event') {
+            var evt = {
+                name: obj.name,
+                place: obj.place,
+                date: stringifyDate(new Date())
+            };
+
+            db.add('events', evt);
+            $history.replace('/events');
+        } else if (obj.type === 'task') {
+            var task = {
+                name: obj.name,
+            };
+
+            db.add('tasks', task);
+            $history.replace('/tasks');
+        }
+    }
+
+    function stringifyDate(date) {
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        return year + '-' + month + '-' + day;
+    }
+
+    function capitaliseFirstLetter(string)
+    {
+            return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     $speech.init(commands);

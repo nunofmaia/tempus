@@ -30,6 +30,12 @@ module.service('$history', function ($location, _) {
             }
         },
 
+        replace: function (s) {
+            stack.pop();
+            stack.push(s);
+            $location.path(s);
+        },
+
         init: function (s) {
             if (stack.length === 0) {
                 stack.push(s);
@@ -115,8 +121,8 @@ module.service('db', function (_) {
             {
                 id: 2,
                 name: 'Buy soda',
-                dueDate: '2014-01-01',
-                dueTime: '15:00',
+                dueDate: '',
+                dueTime: '',
                 category: 'shopping',
                 done: true
             },
