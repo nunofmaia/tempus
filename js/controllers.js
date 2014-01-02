@@ -23,12 +23,13 @@ module.controller('EventsCtrl', function ($scope, $location, db, _) {
 module.controller('EventCtrl', function ($scope, $routeParams, $history, db) {
 	var date = $routeParams.date;
 	var id = $routeParams.id;
-    var emptyEvent = { name: '', date: '', time: '', place: '', frequency: 0 };
+    var emptyEvent = { name: '', date: '', time: '', place: '', frequency: 0, notification: 0 };
     var evt = db.getOne('events', id) || emptyEvent;
 	$scope.evt = $scope.clone(evt);
     $scope.editing = false;
     $scope.editable = '';
     $scope.fieldType = '';
+    $scope.hasNotifcation = false;
 
     var s = document.getElementById('select-add');
 
@@ -39,7 +40,8 @@ module.controller('EventCtrl', function ($scope, $routeParams, $history, db) {
             time: e.time,
             date: e.date,
             place: e.place,
-            frequency: s.selectedIndex
+            frequency: s.selectedIndex,
+            notification: e.notification
         };
 
         db.add('events', evt);
@@ -54,7 +56,8 @@ module.controller('EventCtrl', function ($scope, $routeParams, $history, db) {
             time: e.time,
             date: e.date,
             place: e.place,
-            frequency: s.selectedIndex
+            frequency: s.selectedIndex,
+            notification: e.notification
         };
 
     	db.update('events', evt);
@@ -103,12 +106,13 @@ module.controller('TasksCtrl', function ($scope, $location, db, settings) {
 
 module.controller('TaskCtrl', function ($scope, $routeParams, db, $history) {
     var id = $routeParams.id;
-    var emptyTask = { name: '', dueDate: '', dueTime: '', done: false };
+    var emptyTask = { name: '', dueDate: '', dueTime: '', done: false, notification: 0 };
     var task = db.getOne('tasks', id) || emptyTask;
     $scope.task = $scope.clone(task);
     $scope.editing = false;
     $scope.editable = '';
     $scope.fieldType = '';
+    $scope.hasNotifcation = false;
 
     $scope.add = function (t) {
         db.add('tasks', t);
@@ -293,7 +297,7 @@ module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech, 
 
 });
 
-module.controller('AppCtrl', function ($scope, $rootScope, $location, $history) {
+module.controller('AppCtrl', function ($scope, $rootScope, $location, $timeout, $history) {
     var index = 0;
     $scope.menus = ["events", "tasks", "notes", "notifications", "settings"]
     $scope.menu = $scope.menus[index];
@@ -355,4 +359,13 @@ module.controller('AppCtrl', function ($scope, $rootScope, $location, $history) 
     $scope.notification = function () {
         $history.push('/notification');
     }
+
+    $scope.snooze = function () {
+        $timeout(function () {
+            console.log("snoozing");
+            $history.push("/notification");
+        }, 5000);
+
+        $history.pop();
+    } 
 });

@@ -7,8 +7,8 @@
 	<h3>{{ evt.name }}</h3>
     <p><i class="icon ion-android-clock"></i>{{ evt.date }}, {{ evt.time }}</p>
 	<p><i class="icon ion-location"></i>{{ evt.place }}</p>
-	<p><i class="icon ion-ios7-bell"></i>No notifications</p>
-	<p class="description">Don't forget to bring the documents about that important thing</p>
+	<p ng-show="evt.notification === 0"><i class="icon ion-ios7-bell"></i>No notification</p>
+	<p ng-show="evt.notification > 0"><i class="icon ion-ios7-bell"></i>{{ evt.notification }} minutes before</p>
 </section>
 <footer class="gray row">
 	<a class="col span_2_4" href="#/events/{{evt.date}}/{{evt.id}}/edit"><i class="icon ion-edit"></i></a>

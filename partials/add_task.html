@@ -3,7 +3,7 @@
 	<small current-time="hourFormat"></small>
 	<i class="icon ion-battery-full" style="float: right; padding-right: 10px; padding-top: 2px;"></i>
 </header>
-<div ng-show="!editing">
+<div ng-show="!editing" ng-hide="hasNotification">
 	<section class="main-content">
 		<p>Name:</p>
 		<input type="text" placeholder="Task name" ng-model="task.name" ng-click="editField('name', 'text')">
@@ -17,9 +17,8 @@
 			</div>
 		</div>
 		<p>Notifications:</p>
-		<ul>
-			<li><i class="ion-plus-round"></i> Add notification</li>
-		</ul>
+		<small ng-show="task.notification === 0" style="padding: 10px 5px; line-height: 30px; cursor: pointer;" ng-click="hasNotification = true"><i class="ion-plus"></i> Add notification</small>
+		<small ng-show="task.notification > 0" style="padding: 10px 5px; line-height: 30px; cursor: pointer;" ng-click="hasNotification = true">{{ task.notification }} minutes before</small>
 	</section>
 	<footer class="gray row">
 	    <div class="col span_2_4" ng-click="back()"><i class="icon ion-close-round"></i></div>
@@ -29,3 +28,7 @@
 <div ng-show="editing">
 	<div keyboard="" message="task[editable]" type="{{ fieldType }}" return="editing"></div>
 </div>
+<div ng-show="hasNotification">
+	<div notification-times="" option="task.notification" return="hasNotification"></div>	
+</div>
+

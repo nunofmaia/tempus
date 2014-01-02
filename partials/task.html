@@ -6,7 +6,8 @@
 <section class="main-content">
 	<h3>{{ task.name }}</h3>
 	<p ng-show="task.dueDate"><i class="icon ion-android-clock"></i>{{ task.dueDate }}, {{ task.dueTime }}</p>
-	<p><i class="icon ion-ios7-bell"></i>No notifications</p>
+	<p ng-show="task.notification === 0"><i class="icon ion-ios7-bell"></i>No notification</p>
+	<p ng-show="task.notification > 0"><i class="icon ion-ios7-bell"></i>{{ task.notification }} minutes before</p>
 </section>
 <footer class="gray row">
 	<a class="col span_2_4" href="#/tasks/{{task.id}}/edit"><i class="icon ion-edit"></i></a>

@@ -97,7 +97,8 @@ module.service('db', function (_) {
                 time: '20:00',
                 date: '2013-12-19',
                 place: 'Sesame Street',
-                frequency: 2
+                frequency: 2,
+                notification: 0
             },
             {
                 id: 1,
@@ -105,7 +106,8 @@ module.service('db', function (_) {
                 time: '09:00',
                 date: '2013-12-19',
                 place: 'Hot Club',
-                frequency: 3
+                frequency: 3,
+                notification: 5
             }
         ],
 
@@ -116,7 +118,8 @@ module.service('db', function (_) {
                 dueDate: '2014-01-01',
                 dueTime: '15:00',
                 category: 'shopping',
-                done: false
+                done: false,
+                notification: 0
             },
             {
                 id: 2,
@@ -124,7 +127,8 @@ module.service('db', function (_) {
                 dueDate: '',
                 dueTime: '',
                 category: 'shopping',
-                done: true
+                done: true,
+                notification: 0
             },
             {
                 id: 3,
@@ -132,7 +136,8 @@ module.service('db', function (_) {
                 dueDate: '2014-01-01',
                 dueTime: '15:00',
                 category: 'none',
-                done: false
+                done: false,
+                notification: 30
             }
         ],
 

@@ -87,13 +87,19 @@ footer {
 
 footer a, footer div {
     text-align: center;
+    cursor: pointer;
 }
 
-footer  .icon {
+footer a *, footer div *{
     font-size: 25px;
     padding: 5px;
 }
 
+/*footer .icon {
+    font-size: 25px;
+    padding: 5px;
+}
+*/
 
 .black {
     background-color: rgb(24, 24, 24);
@@ -156,6 +162,7 @@ ul  li {
     border-bottom: 1px solid rgb(240, 240, 240);
     border-left: none;
     border-right: none;
+    cursor: pointer;
 }
 
 ul  li  small {
@@ -188,6 +195,10 @@ ul li i.icon {
     border-bottom: 1px solid rgb(230, 230, 230);
     background-color: rgb(240, 240, 240);
     padding: 1px;
+}
+
+.definitions-list li:not(.list-divider) {
+    cursor: pointer;
 }
 
 .definitions-list i {

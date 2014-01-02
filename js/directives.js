@@ -28,6 +28,20 @@ module.directive('currentTime', function($timeout, dateFilter) {
     }
 });
 
+module.directive('notificationTimes', function () {
+    return {
+        scope: {
+            option: '=',
+            return: '='
+        },
+        templateUrl: 'partials/notification_times.html',
+        link: function (scope, element, attrs) {
+            
+        }
+
+    };
+});
+
 module.directive('keyboard', function () {
     return {
         scope: {

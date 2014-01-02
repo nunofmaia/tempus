@@ -11,7 +11,11 @@
 </section>
 <footer class="black">
     <div class="row">
-    	<div ng-click="unlock()" class="col span_2_4" style="color: #aaa; font-weight: 300;">Snooze</div>
-    	<div ng-click="unlock()" class="col span_2_4" style="color: #aaa; font-weight: 300;">Dismiss</div>
+    	<div ng-click="snooze()" class="col span_2_4" style="color: #aaa; font-weight: 300;">Snooze</div>
+    	<div ng-click="back()" class="col span_2_4" style="color: #aaa; font-weight: 300;">Dismiss</div>
     </div>
 </footer>
+<audio autoplay>
+	<source src="public/media/notification.mp3" type="audio/mpeg">
+	Your browser does not support the audio element
+</audio>
