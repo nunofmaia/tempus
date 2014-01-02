@@ -10,13 +10,13 @@
 </head>
 <body ng-controller="AppCtrl">
     <div class="container">
- 	    <div id="screen" class="white" data-ng-view="" >
+ 	    <div id="screen" class="white view-animation" ng-class='{ wallpaper: currentPage == "/home" }' data-ng-view="" >
 
 	    </div>
+	    <button id="lock-button" ng-click="lock()"></button>
+	    <button id="speak-button" ng-click="speak()"></button>
     </div>
 	<button ng-click="nextMenu()">Swype</button>
-    <button ng-click="unlock()">Lock/Unlock</button>
-    <button ng-click="speak()">Speak</button>
     <button ng-click="back()">Back</button>
     <button ng-click="notification()">Notification</button>
 	<script src="public/js/angular.min.js"></script>

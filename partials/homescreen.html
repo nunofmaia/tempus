@@ -1,36 +1,33 @@
-<header class="black">
+<header class="">
     <i class="icon ion-ios7-bell" style="float: left; padding-left: 10px; padding-top: 2px;"></i>
     <small current-time="hourFormat"></small>
     <i class="icon ion-battery-full" style="float: right; padding-right: 10px; padding-top: 2px;"></i>
 </header>
-<section class="main-content">
+<section class="main-content no-footer">
     <div ng-switch on="menu">
         <div class="menu-icon"  ng-switch-when="events">
-            <a href="#/events">
+            <a href="#/events" data-menu="Events">
                 <i class="icon ion-calendar"></i>
-                <p>Events</p>
             </a>
         </div>
         <div class="menu-icon" ng-switch-when="tasks">
-            <a href="#/tasks">
+            <a href="#/tasks" data-menu="Tasks">
                 <i class="icon ion-checkmark"></i>
-                <p>Tasks</p>
             </a>
         </div>
         <div class="menu-icon" ng-switch-when="notes">
-            <a href="#/notes">
+            <a href="#/notes" data-menu="Notes">
                 <i class="icon ion-document-text"></i>
-                <p>Notes</p>
             </a>
         </div>
         <div class="menu-icon" ng-switch-when="notifications">
-            <i class="icon ion-ios7-bell"></i>
-            <p>Notifications</p>
+            <a href="#/notes" data-menu="Notifications">
+                <i class="icon ion-ios7-bell"></i>
+            </a>
         </div>
         <div class="menu-icon" ng-switch-when="settings">
-            <a href="#/settings">
+            <a href="#/settings" data-menu="Settings">
                 <i class="icon ion-gear-b"></i>
-                <p>Settings</p>
             </a>
         </div>
     </div>

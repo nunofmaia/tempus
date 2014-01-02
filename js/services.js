@@ -53,6 +53,10 @@ module.service('$history', function ($location, _) {
 
         dump: function () {
             console.log(stack);
+        },
+
+        current: function () {
+            return _.last(stack);
         }
     }
 });

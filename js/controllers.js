@@ -299,45 +299,51 @@ module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech, 
 
 module.controller('AppCtrl', function ($scope, $rootScope, $location, $timeout, $history) {
     var index = 0;
+
     $scope.menus = ["events", "tasks", "notes", "notifications", "settings"]
     $scope.menu = $scope.menus[index];
 
     $scope.hourFormat = 'HH:mm';
     $scope.dateFormat = 'EEEE, MMMM dd';
 
-
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         if (!$history.init($location.path())) {
             $history.push($location.path());
         }
 
+        $scope.currentPage = $history.current();
+
         $history.dump();
     });
 
     $scope.back = function () {
-        var path = $location.path();
+        var path = $history.current();
         if (path != '/home') {
             $history.pop();
         }
     };
 
     $scope.unlock = function () {
-        var path = $location.path();
         $history.erase();
 
-        if (path != '/lockscreen') {
-            $history.push('/lockscreen');
-        } else {
-            $scope.menu = 'events';
-            index = 0;
-            $history.push('/home');
-        }
-    }
+        $scope.menu = 'events';
+        index = 0;
+        $history.push('/home');
+    };
+
+    $scope.lock = function () {
+        $history.erase();
+        $history.push('/lockscreen');
+    };
 
     $scope.speak = function () {
-        var path = $location.path();
+        var path = $history.current();
         if (path != '/lockscreen') {
-            $location.path('/listen');
+            if (path === '/listen') {
+                $history.pop();
+            } else {
+                $history.push('/listen');
+            }
         }
     }
 
@@ -367,5 +373,5 @@ module.controller('AppCtrl', function ($scope, $rootScope, $location, $timeout, 
         }, 5000);
 
         $history.pop();
-    } 
+    }
 });
