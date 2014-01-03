@@ -65,6 +65,24 @@ module.factory('_', function () {
     return window._;
 });
 
+module.factory('moment', function () {
+    var moment = window.moment;
+
+    moment.lang('en', {
+        calendar: {
+            lastDay : '[Yesterday]',
+            sameDay : '[Today]',
+            nextDay : '[Tomorrow]',
+            lastWeek : 'ddd, MMM DD YYYY',
+            nextWeek : 'ddd, MMM DD YYYY',
+            //sameElse : 'L LT'
+            sameElse : 'ddd, MMM DD YYYY'
+        }
+    });
+
+    return moment;
+});
+
 module.factory('$speech', function () {
     return window.annyang;
 });

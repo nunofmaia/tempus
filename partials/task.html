@@ -1,11 +1,13 @@
-<header class="black">
+<!-- <header class="black">
 	<i class="icon ion-ios7-bell" style="float: left; padding-left: 10px; padding-top: 2px;"></i>
 	<small current-time="hourFormat"></small>
 	<i class="icon ion-battery-full" style="float: right; padding-right: 10px; padding-top: 2px;"></i>
-</header>
+</header> -->
 <section class="main-content">
 	<h3>{{ task.name }}</h3>
-	<p ng-show="task.dueDate"><i class="icon ion-android-clock"></i>{{ task.dueDate }}, {{ task.dueTime }}</p>
+	<p ng-show="task.dueDate"><i class="icon ion-calendar"></i>{{ task.dueDate | moment }}</p>
+	<p ng-show="task.dueDate"><i class="icon ion-clock"></i>{{ task.dueTime }}</p>
+    <p ng-show="task.category"><i class="icon ion-pricetags"></i>{{ task.category }}</p>
 	<p ng-show="task.notification === 0"><i class="icon ion-ios7-bell"></i>No notification</p>
 	<p ng-show="task.notification > 0"><i class="icon ion-ios7-bell"></i>{{ task.notification }} minutes before</p>
 </section>

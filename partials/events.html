@@ -1,17 +1,12 @@
-<header class="black">
-    <i class="icon ion-ios7-bell" style="float: left; padding-left: 10px; padding-top: 2px;"></i>
-    <small current-time="hourFormat"></small>
-    <i class="icon ion-battery-full" style="float: right; padding-right: 10px; padding-top: 2px;"></i>
-</header>
 <section class="main-content">
     <ul>
         <div ng-repeat="(day, evts) in events">
-            <li class="list-divider">{{ day }}</li>
+            <li class="list-divider">{{ day | moment }}</li>
             <li ng-repeat="event in evts" ng-click="selectEvent(event)"><small>{{ event.time }}</small>{{ event.name }}</li>
         </div>
     </ul>
 </section>
 <footer class="gray row">
-    <a class="col span_2_4" href="#/events/add"><i class="icon ion-plus-round"></i></a>
+    <a class="col span_2_4" href="#/events/add"><i class="icon ion-plus"></i></a>
     <a class="col span_2_4" href="#/events/add"><i class="icon ion-eye"></i></a>
 </footer>

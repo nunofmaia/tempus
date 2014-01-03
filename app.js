@@ -1,4 +1,4 @@
-var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'directives', 'services'])
+var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'directives', 'services', 'filters'])
     .config(['$routeProvider', function ($routeProvider) {
        $routeProvider
         .when('/lockscreen', {

@@ -1,12 +1,13 @@
-<header class="black">
+<!-- <header class="black">
 	<i class="icon ion-ios7-bell" style="float: left; padding-left: 10px; padding-top: 2px;"></i>
 	<small current-time="hourFormat"></small>
 	<i class="icon ion-battery-full" style="float: right; padding-right: 10px; padding-top: 2px;"></i>
-</header>
+</header> -->
 <section class="main-content">
 	<h3>{{ evt.name }}</h3>
-    <p><i class="icon ion-android-clock"></i>{{ evt.date }}, {{ evt.time }}</p>
-	<p><i class="icon ion-location"></i>{{ evt.place }}</p>
+    <p ng-show="evt.date"><i class="icon ion-calendar"></i>{{ evt.date | moment }}</p>
+    <p ng-show="evt.time"><i class="icon ion-clock"></i>{{ evt.time }}</p>
+	<p ng-show="evt.place"><i class="icon ion-location"></i>{{ evt.place }}</p>
 	<p ng-show="evt.notification === 0"><i class="icon ion-ios7-bell"></i>No notification</p>
 	<p ng-show="evt.notification > 0"><i class="icon ion-ios7-bell"></i>{{ evt.notification }} minutes before</p>
 </section>

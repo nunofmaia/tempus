@@ -77,13 +77,11 @@ module.controller('EventCtrl', function ($scope, $routeParams, $history, db) {
 
 });
 
-module.controller('TasksCtrl', function ($scope, $location, db, settings) {
+module.controller('TasksCtrl', function ($scope, $location, db, settings, _) {
     var tasks = db.getAll('tasks');
     $scope.tasks = tasks;
-    // $scope.tasks = _.groupBy(tasks, function (e) {
-    //     return e.id;
-    // });
     $scope.category = settings.get('category');
+    $scope.categories = _.uniq(_.map(tasks, function (val) { return val.category; }));
 
     $scope.$watch('category', function (newVal, oldVal) {
         console.log(newVal, oldVal);
@@ -191,7 +189,7 @@ module.controller('HomeCtrl', function ($scope) {
 
 });
 
-module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech, $history, db) {
+module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech, $history, db, moment) {
 
     $scope.message = "What can I help you with?";
     var obj = {};
@@ -207,13 +205,77 @@ module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech, 
             $scope.message = "What can I help you with?";
             obj = {};
         },
-        'schedule a *evt at *place': function (evt, place) {
-            console.log(evt, place);
-            $scope.message = '"Schedule a ' + evt + ' at ' + place + '". Do you confirm?';
+        'schedule *evt for tomorrow at *time in *place': function (evt, time, place) {
+            console.log(evt, time);
+            $scope.message = '"Schedule a ' + evt + ' for tomorrow at ' + time + '". Do you confirm?';
 
             obj.type = 'event';
             obj.name = capitaliseFirstLetter(evt);
             obj.place = capitaliseFirstLetter(place);
+            obj.date = moment().add('d', 1).format('YYYY-MM-DD');
+            obj.time = moment(time, 'h a').format('HH:mm');
+            obj.frequency = 0;
+            obj.notification = 0;
+        },
+        'schedule *evt for tomorrow at *time at *place': function (evt, time, place) {
+            console.log(evt, time);
+            $scope.message = '"Schedule a ' + evt + ' for tomorrow at ' + time + '". Do you confirm?';
+
+            obj.type = 'event';
+            obj.name = capitaliseFirstLetter(evt);
+            obj.place = capitaliseFirstLetter(place);
+            obj.date = moment().add('d', 1).format('YYYY-MM-DD');
+            obj.time = moment(time, 'h a').format('HH:mm');
+            obj.frequency = 0;
+            obj.notification = 0;
+        },
+        'schedule *evt for tomorrow at *time': function (evt, time) {
+            console.log(evt, time);
+            $scope.message = '"Schedule a ' + evt + ' for tomorrow at ' + time + '". Do you confirm?';
+
+            obj.type = 'event';
+            obj.name = capitaliseFirstLetter(evt);
+            obj.place = '';
+            obj.date = moment().add('d', 1).format('YYYY-MM-DD');
+            obj.time = moment(time, 'h a').format('HH:mm');
+            obj.frequency = 0;
+            obj.notification = 0;
+        },
+        'schedule *evt at *time a week from now': function (evt, time) {
+            console.log(evt, time);
+            $scope.message = '"Schedule a ' + evt + ' at ' + time + ' a week from now". Do you confirm?';
+
+            obj.type = 'event';
+            obj.name = capitaliseFirstLetter(evt);
+            obj.place = '';
+            obj.date = moment().add('w', 1).format('YYYY-MM-DD');
+            obj.time = moment(time, 'h a').format('HH:mm');
+            obj.frequency = 0;
+            obj.notification = 0;
+        },
+        'schedule *evt at *time': function (evt, time) {
+            console.log(evt, time);
+            $scope.message = '"Schedule a ' + evt + ' at ' + time + '". Do you confirm?';
+
+            obj.type = 'event';
+            obj.name = capitaliseFirstLetter(evt);
+            obj.place = '';
+            obj.date = moment().format('YYYY-MM-DD');
+            obj.time = moment(time, 'h a').format('HH:mm');
+            obj.frequency = 0;
+            obj.notification = 0;
+        },
+        'remind me to *task tomorrow': function (task) {
+            console.log(task);
+            $scope.message = 'Remind me to ' + task + '. Do you confirm?';
+
+            obj.type = 'task';
+            obj.name = capitaliseFirstLetter(task);
+            obj.dueDate = moment().add('d', 1).format('YYYY-MM-DD');
+            obj.dueTime = moment('1 pm', 'h a').format('HH:mm');
+            obj.category = 'none';
+            obj.done = false;
+            obj.notification = 0;
         },
         'remind me to *task': function (task) {
             console.log(task);
@@ -221,6 +283,35 @@ module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech, 
 
             obj.type = 'task';
             obj.name = capitaliseFirstLetter(task);
+            obj.dueDate = '';
+            obj.dueTime = '';
+            obj.category = 'none';
+            obj.done = false;
+            obj.notification = 0;
+        },
+        'add *task to *list': function (task, list) {
+            console.log(task, list);
+            $scope.message = 'Add ' + task + ' to ' + list + '. Do you confirm?';
+
+            obj.type = 'task';
+            obj.name = capitaliseFirstLetter(task);
+            obj.dueDate = '';
+            obj.dueTime = '';
+            obj.category = list;
+            obj.done = false;
+            obj.notification = 0;
+        },
+        'remind me to *task at *time': function (task, time) {
+            console.log(task);
+            $scope.message = 'Remind me to ' + task + ' at ' + time + '. Do you confirm?';
+
+            obj.type = 'task';
+            obj.name = capitaliseFirstLetter(task);
+            obj.dueDate = moment().format('YYYY-MM-DD');
+            obj.dueTime = moment(time, 'h a').format('HH:mm');
+            obj.category = 'none';
+            obj.done = false;
+            obj.notification = 0;
         }
     };
 
@@ -229,7 +320,10 @@ module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech, 
             var evt = {
                 name: obj.name,
                 place: obj.place,
-                date: stringifyDate(new Date())
+                time: obj.time,
+                date: obj.date,
+                frequency: 0,
+                notification: 0
             };
 
             db.add('events', evt);
@@ -237,6 +331,11 @@ module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech, 
         } else if (obj.type === 'task') {
             var task = {
                 name: obj.name,
+                dueDate: obj.dueDate,
+                dueTime: obj.dueTime,
+                category: obj.category,
+                done: obj.done,
+                notification: obj.notification
             };
 
             db.add('tasks', task);
@@ -300,11 +399,13 @@ module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech, 
 module.controller('AppCtrl', function ($scope, $rootScope, $location, $timeout, $history) {
     var index = 0;
 
-    $scope.menus = ["events", "tasks", "notes", "notifications", "settings"]
+    $scope.menus = ["events", "tasks", "notes", "settings"]
     $scope.menu = $scope.menus[index];
 
     $scope.hourFormat = 'HH:mm';
     $scope.dateFormat = 'EEEE, MMMM dd';
+
+    $scope.moment = moment('3 am', 'h a').calendar();
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         if (!$history.init($location.path())) {
@@ -358,8 +459,10 @@ module.controller('AppCtrl', function ($scope, $rootScope, $location, $timeout, 
 
 
     $scope.nextMenu = function () {
-        index = (index + 1) % $scope.menus.length;
-        $scope.menu = $scope.menus[index];
+        if ($scope.currentPage === '/home') {
+            index = (index + 1) % $scope.menus.length;
+            $scope.menu = $scope.menus[index];
+        }
     };
 
     $scope.notification = function () {
