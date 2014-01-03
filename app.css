@@ -1,5 +1,37 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700,100);
 
+.red {
+    color: rgb(255, 67, 81);
+}
+
+.red-light {
+    color: rgb(255, 102, 122);
+}
+
+.red-lighter {
+    color: rgb(255, 178, 188);
+}
+
+.blue {
+    color: rgb(27, 154, 247);
+}
+
+.green {
+    color: rgb(73, 232, 69);
+}
+
+.purple {
+    color: rgb(219, 73, 216);
+}
+
+.yellow {
+    color: rgb(254, 174, 27);
+}
+
+.orange {
+    color: rgb(252, 136, 15);
+}
+
 body {
     font-family: 'Helvetica Neue', 'Roboto';
     font-weight: 400;
@@ -118,7 +150,9 @@ header > small {
 .main-content h3 {
     margin: 0;
     margin-top: 10px;
-    padding-left: 2px;
+    padding-left: 5px;
+    font-weight: 300;
+    padding-bottom: 8px;
 }
 
 a {
@@ -191,15 +225,12 @@ ul {
 
 
 ul  li.list-divider {
-    font-size: 12px;
-    font-weight: 500;
-    border-bottom: 1px solid rgb(230, 230, 230);
-    border-top: none;
-    background-color: rgb(240, 240, 240);
+    font-size: 0.9em;
+    font-weight: 300;
     padding: 2px;
 }
 
-ul  li {
+ul  li:not(.list-divider) {
     padding: 10px 4px;
     font-size: 0.85em;
     border-bottom: 1px solid rgb(240, 240, 240);

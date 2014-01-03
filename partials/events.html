@@ -1,12 +1,12 @@
 <section class="main-content">
     <ul>
         <div ng-repeat="(day, evts) in events">
-            <li class="list-divider">{{ day | moment }}</li>
-            <li ng-repeat="event in evts" ng-click="selectEvent(event)"><small>{{ event.time }}</small>{{ event.name }}</li>
+            <li class="list-divider red">{{ day | moment }}</li>
+            <li ng-repeat="event in evts" ng-click="selectEvent(event)"><small class="red-light">{{ event.time }}</small>{{ event.name }}</li>
         </div>
     </ul>
 </section>
 <footer class="gray row">
-    <a class="col span_2_4" href="#/events/add"><i class="icon ion-plus"></i></a>
-    <a class="col span_2_4" href="#/events/add"><i class="icon ion-eye"></i></a>
+    <a class="col span_2_4" href="#/events/add"><i class="icon ion-plus red"></i></a>
+    <a class="col span_2_4" href="#/events/add"><i class="icon ion-eye red"></i></a>
 </footer>

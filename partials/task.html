@@ -4,14 +4,14 @@
 	<i class="icon ion-battery-full" style="float: right; padding-right: 10px; padding-top: 2px;"></i>
 </header> -->
 <section class="main-content">
-	<h3>{{ task.name }}</h3>
-	<p ng-show="task.dueDate"><i class="icon ion-calendar"></i>{{ task.dueDate | moment }}</p>
-	<p ng-show="task.dueDate"><i class="icon ion-clock"></i>{{ task.dueTime }}</p>
-    <p ng-show="task.category"><i class="icon ion-pricetags"></i>{{ task.category }}</p>
-	<p ng-show="task.notification === 0"><i class="icon ion-ios7-bell"></i>No notification</p>
-	<p ng-show="task.notification > 0"><i class="icon ion-ios7-bell"></i>{{ task.notification }} minutes before</p>
+	<h3 class="purple">{{ task.name }}</h3>
+	<p ng-show="task.dueDate"><i class="icon ion-calendar purple"></i>{{ task.dueDate | moment }}</p>
+	<p ng-show="task.dueDate"><i class="icon ion-clock purple"></i>{{ task.dueTime }}</p>
+    <p ng-show="task.category"><i class="icon ion-pricetags purple"></i>{{ task.category }}</p>
+	<p ng-show="task.notification === 0"><i class="icon ion-ios7-bell purple"></i>No notification</p>
+	<p ng-show="task.notification > 0"><i class="icon ion-ios7-bell purple"></i>{{ task.notification }} minutes before</p>
 </section>
 <footer class="gray row">
-	<a class="col span_2_4" href="#/tasks/{{task.id}}/edit"><i class="icon ion-edit"></i></a>
-    <a class="col span_2_4" href="#/tasks/{{task.id}}/delete"><i class="icon ion-trash-a"></i></a>
+	<a class="col span_2_4" href="#/tasks/{{task.id}}/edit"><i class="icon ion-edit purple"></i></a>
+    <a class="col span_2_4" href="#/tasks/{{task.id}}/delete"><i class="icon ion-trash-a purple"></i></a>
 </footer>

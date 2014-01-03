@@ -6,14 +6,14 @@
 <section class="main-content">
     <ul>
         <li ng-repeat="task in tasks">
-        	<i class="icon ion-ios7-circle-outline" ng-click="task.done = true" ng-show="!task.done"></i>
-        	<i class="icon ion-ios7-circle-filled" ng-click="task.done = false" ng-show="!!task.done"></i>
+        	<i class="icon ion-ios7-circle-outline purple" ng-click="task.done = true" ng-show="!task.done"></i>
+        	<i class="icon ion-ios7-circle-filled purple" ng-click="task.done = false" ng-show="!!task.done"></i>
         	<div style="display: inline-block; width: 120px; cursor: pointer;" ng-click="selectTask(task)">{{ task.name }}</div>
         </li>
     </ul>
 </section>
 <footer class="gray row">
-    <a class="col span_2_4" href="#/tasks/add"><i class="icon ion-plus"></i></a>
-    <a class="col span_2_4" href="#/tasks/categories"><i class="icon ion-pricetags"></i></a>
+    <a class="col span_2_4" href="#/tasks/add"><i class="icon ion-plus purple"></i></a>
+    <a class="col span_2_4" href="#/tasks/categories"><i class="icon ion-pricetags purple"></i></a>
 
 </footer>

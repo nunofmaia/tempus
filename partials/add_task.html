@@ -1,13 +1,13 @@
-<!-- <header class="black">
+ <!-- <header class="black">
 	<i class="icon ion-ios7-bell" style="float: left; padding-left: 10px; padding-top: 2px;"></i>
 	<small current-time="hourFormat"></small>
 	<i class="icon ion-battery-full" style="float: right; padding-right: 10px; padding-top: 2px;"></i>
 </header> -->
 <div ng-show="!editing" ng-hide="hasNotification">
 	<section class="main-content">
-		<p>Name:</p>
+		<p class="purple">Name:</p>
 		<input type="text" placeholder="Task name" ng-model="task.name" ng-click="editField('name', 'text')">
-		<p>Due date:</p>
+		<p class="purple">Due date:</p>
 		<div class="row">
 			<div class="col span_2_4">
 				<input type="date" ng-model="task.dueDate" ng-click="editField('dueDate', 'date')" >
@@ -16,26 +16,26 @@
 				<input type="time" ng-model="task.dueTime" ng-click="editField('dueTime', 'time')">
 			</div>
 		</div>
-		<p>Category:</p>
+		<p class="purple">Category:</p>
 		<select id="select-add">
 			<option value="none">None</option>
 			<option value="work">Work</option>
 			<option value="home">Home</option>
 			<option value="shopping">Shopping</option>
 	 	</select>
-		<p>Notifications:</p>
+		<p class="purple">Notifications:</p>
 		<small ng-show="task.notification === 0" style="padding: 10px 5px; line-height: 30px; cursor: pointer;" ng-click="hasNotification = true"><i class="ion-plus"></i> Add notification</small>
 		<small ng-show="task.notification > 0" style="padding: 10px 5px; line-height: 30px; cursor: pointer;" ng-click="hasNotification = true">{{ task.notification }} minutes before</small>
 	</section>
 	<footer class="gray row">
-	    <div class="col span_2_4" ng-click="back()"><i class="icon ion-close"></i></div>
-		<div class="col span_2_4"><i class="icon ion-checkmark" ng-click="add(task)"></i></div>
+	    <div class="col span_2_4" ng-click="back()"><i class="icon ion-close purple"></i></div>
+		<div class="col span_2_4"><i class="icon ion-checkmark purple" ng-click="add(task)"></i></div>
 	</footer>
 </div>
 <div ng-show="editing">
 	<div keyboard="" message="task[editable]" type="{{ fieldType }}" return="editing"></div>
 </div>
 <div ng-show="hasNotification">
-	<div notification-times="" option="task.notification" return="hasNotification"></div>	
+	<div notification-times="" option="task.notification" return="hasNotification"></div>
 </div>
 

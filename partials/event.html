@@ -4,14 +4,14 @@
 	<i class="icon ion-battery-full" style="float: right; padding-right: 10px; padding-top: 2px;"></i>
 </header> -->
 <section class="main-content">
-	<h3>{{ evt.name }}</h3>
-    <p ng-show="evt.date"><i class="icon ion-calendar"></i>{{ evt.date | moment }}</p>
-    <p ng-show="evt.time"><i class="icon ion-clock"></i>{{ evt.time }}</p>
-	<p ng-show="evt.place"><i class="icon ion-location"></i>{{ evt.place }}</p>
-	<p ng-show="evt.notification === 0"><i class="icon ion-ios7-bell"></i>No notification</p>
-	<p ng-show="evt.notification > 0"><i class="icon ion-ios7-bell"></i>{{ evt.notification }} minutes before</p>
+	<h3 class="red">{{ evt.name }}</h3>
+    <p ng-show="evt.date"><i class="icon ion-calendar red"></i>{{ evt.date | moment }}</p>
+    <p ng-show="evt.time"><i class="icon ion-clock red"></i>{{ evt.time }}</p>
+	<p ng-show="evt.place"><i class="icon ion-location red"></i>{{ evt.place }}</p>
+	<p ng-show="evt.notification === 0"><i class="icon ion-ios7-bell red"></i>No notification</p>
+	<p ng-show="evt.notification > 0"><i class="icon ion-ios7-bell red"></i>{{ evt.notification }} minutes before</p>
 </section>
 <footer class="gray row">
-	<a class="col span_2_4" href="#/events/{{evt.date}}/{{evt.id}}/edit"><i class="icon ion-edit"></i></a>
-    <a class="col span_2_4" href="#/events/{{evt.date}}/{{evt.id}}/delete"><i class="icon ion-trash-a"></i></a>
+	<a class="col span_2_4" href="#/events/{{evt.date}}/{{evt.id}}/edit"><i class="icon ion-edit red"></i></a>
+    <a class="col span_2_4" href="#/events/{{evt.date}}/{{evt.id}}/delete"><i class="icon ion-trash-a red"></i></a>
 </footer>

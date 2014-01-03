@@ -5,11 +5,11 @@
 </header> -->
 <div ng-show="!editing" ng-hide="hasNotification">
 	<section class="main-content">
-		<p>Name:</p>
+		<p class="red">Name:</p>
 		<input type="text" placeholder="Event name" ng-model="evt.name" ng-click="editField('name', 'text')">
-		<p>Date:</p>
+		<p class="red">Date:</p>
 		<input type="date" placeholder="Event date" ng-model="evt.date" ng-click="editField('date', 'date')">
-		<p>Frequency:</p>
+		<p class="red">Frequency:</p>
 		<select id="select-add">
 			<option value="none">None</option>
 			<option value="daily">Daily</option>
@@ -18,22 +18,22 @@
 			<option value="yearly">Yearly</option>
 	 	</select>
 		<small>&#x25bc;</small>
-		<p>Time:</p>
+		<p class="red">Time:</p>
 		<input type="time" ng-model="evt.time" ng-click="editField('time', 'time')">
-		<p>Location:</p>
+		<p class="red">Location:</p>
 		<input type="text" placeholder="Event location" ng-model="evt.place" ng-click="editField('place', 'text')">
-		<p>Notifications:</p>
+		<p class="red">Notifications:</p>
 		<small ng-show="evt.notification === 0" style="padding: 10px 5px; line-height: 30px; cursor: pointer;" ng-click="hasNotification = true"><i class="ion-plus"></i> Add notification</small>
 		<small ng-show="evt.notification > 0" style="padding: 10px 5px; line-height: 30px; cursor: pointer;" ng-click="hasNotification = true">{{ evt.notification }} minutes before</small>
 	</section>
 	<footer class="gray row">
-	    <div class="col span_2_4" ng-click="back()"><i class="icon ion-close"></i></div>
-		<div class="col span_2_4"><i class="icon ion-checkmark" ng-click="add(evt)"></i></div>
+	    <div class="col span_2_4" ng-click="back()"><i class="icon ion-close red"></i></div>
+		<div class="col span_2_4"><i class="icon ion-checkmark red" ng-click="add(evt)"></i></div>
 	</footer>
 </div>
 <div ng-show="editing">
 	<div keyboard="" message="evt[editable]" type="{{ fieldType }}" return="editing"></div>
 </div>
 <div ng-show="hasNotification">
-	<div notification-times="" option="evt.notification" return="hasNotification"></div>	
+	<div notification-times="" option="evt.notification" return="hasNotification"></div>
 </div>
