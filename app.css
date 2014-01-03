@@ -285,18 +285,38 @@ ul li i.icon {
 
 .menu-icon {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 35px;
 }
 
 .menu-icon > a {
-    background-color: rgb(250, 250, 250);
     display: block;
-    width: 90px;
-    height: 90px;
+    width: 120px;
+    height: 120px;
     margin: 0 auto;
-    padding: 5px;
-    border-radius: 20px;
-    /* border: 1px solid #D8D8D8; */
+}
+
+.menu-icon > a[data-menu=Events] {
+    background: url('img/calendar.png') top center;
+    -webkit-background-size: 120px;
+    background-size: 120px;
+}
+
+.menu-icon > a[data-menu=Tasks] {
+    background: url('img/tasks.png') top center no-repeat;
+    -webkit-background-size: 120px;
+    background-size: 120px;
+}
+
+.menu-icon > a[data-menu=Notes] {
+    background: url('img/notes.png') top center no-repeat;
+    -webkit-background-size: 120px;
+    background-size: 120px;
+}
+
+.menu-icon > a[data-menu=Settings] {
+    background: url('img/settings.png') top center no-repeat;
+    -webkit-background-size: 120px;
+    background-size: 120px;
 }
 
 .menu-icon > a::after {
@@ -304,9 +324,9 @@ ul li i.icon {
     display: block;
     width: 100%;
     content: attr(data-menu);
-    bottom: 40px;
+    bottom: 35px;
     left: 0;
-    font-size: 14px;
+    font-size: 0.9em;
     text-align: center;
     text-shadow: 0px 2px 1px #fff;
 }
