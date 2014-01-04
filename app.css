@@ -1,35 +1,35 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700,100);
 
 .red {
-    color: rgb(255, 67, 81);
+    color: rgb(91, 201, 202);
 }
 
 .red-light {
-    color: rgb(255, 102, 122);
+    color: rgb(135, 200, 201);
 }
 
 .red-lighter {
-    color: rgb(255, 178, 188);
+    color: rgb(91, 201, 202);
 }
 
 .blue {
-    color: rgb(27, 154, 247);
+    color: rgb(91, 201, 202);
 }
 
 .green {
-    color: rgb(73, 232, 69);
+    color: rgb(91, 201, 202);
 }
 
 .purple {
-    color: rgb(219, 73, 216);
+    color: rgb(91, 201, 202);
 }
 
 .yellow {
-    color: rgb(254, 174, 27);
+    color: rgb(91, 201, 202);
 }
 
 .orange {
-    color: rgb(252, 136, 15);
+    color: rgb(91, 201, 202);
 }
 
 body {
@@ -62,18 +62,21 @@ body {
     background-image: url('img/wallpaper.jpg');
 }
 
-#lock-button {
+#lock-button, #speak-button {
     position: absolute;
     content: '';
-    right: 50px;
-    top: 85px;
     width: 30px;
     height: 30px;
-    background-color: rgb(221, 220, 220);
+    background-color: rgb(105, 104, 119);
     border-radius: 2px;
     z-index: 0;
     border: none;
     outline: none;
+}
+
+#lock-button {
+    right: 50px;
+    top: 85px;
 }
 
 #lock-button::after {
@@ -84,17 +87,8 @@ body {
 }
 
 #speak-button {
-    position: absolute;
-    content: '';
     right: 50px;
     bottom: 215px;
-    width: 30px;
-    height: 30px;
-    background-color: rgb(221, 220, 220);
-    border-radius: 2px;
-    z-index: 0;
-    border: none;
-    outline: none;
 }
 
 #speak-button::after {
@@ -359,7 +353,7 @@ ul li i.icon {
     left: 0;
     font-size: 0.9em;
     text-align: center;
-    text-shadow: 0px 2px 1px #fff;
+    text-shadow: 0px 1px 2px #fff;
 }
 
 .menu-icon  p {

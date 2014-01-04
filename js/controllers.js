@@ -15,7 +15,7 @@ module.controller('EventsCtrl', function ($scope, $location, db, _) {
 	});
 
 	$scope.selectEvent = function (e) {
-		$location.path('/events/' + e.date + '/' + e.id);
+		$location.path('/events/' + e.id);
 	}
 
 });
@@ -31,20 +31,17 @@ module.controller('EventCtrl', function ($scope, $routeParams, $history, db) {
     $scope.fieldType = '';
     $scope.hasNotifcation = false;
 
-    var s = document.getElementById('select-add');
+    var s = document.getElementById('select-edit');
+    if (s) {
+        s.selectedIndex = $scope.evt.frequency;
+    }
 
     $scope.add = function (e) {
     	var s = document.getElementById('select-add');
-        var evt = {
-            name: e.name,
-            time: e.time,
-            date: e.date,
-            place: e.place,
-            frequency: s.selectedIndex,
-            notification: e.notification
-        };
+        e.frequency = s.selectedIndex;
 
-        db.add('events', evt);
+        db.add('events', e);
+        console.log(e);
         $scope.back();
     };
 
@@ -100,11 +97,16 @@ module.controller('TasksCtrl', function ($scope, $location, db, settings, _) {
     $scope.selectTask = function (e) {
         $location.path('/tasks/' + e.id);
     }
+
+    $scope.changeCategory = function (c) {
+        console.log(c);
+        $scope.category = c;
+    }
 });
 
 module.controller('TaskCtrl', function ($scope, $routeParams, db, $history) {
     var id = $routeParams.id;
-    var emptyTask = { name: '', dueDate: '', dueTime: '', done: false, notification: 0 };
+    var emptyTask = { name: '', dueDate: '', dueTime: '', done: false, category: 'none', notification: 0 };
     var task = db.getOne('tasks', id) || emptyTask;
     $scope.task = $scope.clone(task);
     $scope.editing = false;
@@ -112,12 +114,25 @@ module.controller('TaskCtrl', function ($scope, $routeParams, db, $history) {
     $scope.fieldType = '';
     $scope.hasNotifcation = false;
 
+    var s = document.getElementById('category-add');
+    if (s) {
+        s.value = $scope.task.category;
+    }
+
     $scope.add = function (t) {
+    	var s = document.getElementById('category-add');
+        var op = s.selectedOptions[0];
+        t.category = op.value;
+
         db.add('tasks', t);
         $scope.back();
     };
 
     $scope.save = function (t) {
+    	var s = document.getElementById('category-add');
+        var op = s.selectedOptions[0];
+        t.category = op.value;
+
         db.update('tasks', t);
         $scope.back();
     };
@@ -206,8 +221,8 @@ module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech, 
             obj = {};
         },
         'schedule *evt for tomorrow at *time in *place': function (evt, time, place) {
-            console.log(evt, time);
-            $scope.message = '"Schedule a ' + evt + ' for tomorrow at ' + time + '". Do you confirm?';
+            console.log(evt, time, place);
+            $scope.message = '"Schedule a ' + evt + ' for tomorrow at ' + time + ' in ' + place + '". Do you confirm?';
 
             obj.type = 'event';
             obj.name = capitaliseFirstLetter(evt);
@@ -218,8 +233,8 @@ module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech, 
             obj.notification = 0;
         },
         'schedule *evt for tomorrow at *time at *place': function (evt, time, place) {
-            console.log(evt, time);
-            $scope.message = '"Schedule a ' + evt + ' for tomorrow at ' + time + '". Do you confirm?';
+            console.log(evt, time, place);
+            $scope.message = '"Schedule a ' + evt + ' for tomorrow at ' + time + ' at ' + place + '". Do you confirm?';
 
             obj.type = 'event';
             obj.name = capitaliseFirstLetter(evt);
@@ -286,6 +301,18 @@ module.controller('SpeechCtrl', function ($scope, $location, $timeout, $speech, 
             obj.dueDate = '';
             obj.dueTime = '';
             obj.category = 'none';
+            obj.done = false;
+            obj.notification = 0;
+        },
+        'add *task to *list list': function (task, list) {
+            console.log(task, list);
+            $scope.message = 'Add ' + task + ' to ' + list + ' list. Do you confirm?';
+
+            obj.type = 'task';
+            obj.name = capitaliseFirstLetter(task);
+            obj.dueDate = '';
+            obj.dueTime = '';
+            obj.category = list;
             obj.done = false;
             obj.notification = 0;
         },
@@ -404,8 +431,6 @@ module.controller('AppCtrl', function ($scope, $rootScope, $location, $timeout, 
 
     $scope.hourFormat = 'HH:mm';
     $scope.dateFormat = 'EEEE, MMMM dd';
-
-    $scope.moment = moment('3 am', 'h a').calendar();
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         if (!$history.init($location.path())) {

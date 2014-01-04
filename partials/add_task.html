@@ -1,8 +1,3 @@
- <!-- <header class="black">
-	<i class="icon ion-ios7-bell" style="float: left; padding-left: 10px; padding-top: 2px;"></i>
-	<small current-time="hourFormat"></small>
-	<i class="icon ion-battery-full" style="float: right; padding-right: 10px; padding-top: 2px;"></i>
-</header> -->
 <div ng-show="!editing" ng-hide="hasNotification">
 	<section class="main-content">
 		<p class="purple">Name:</p>
@@ -17,12 +12,13 @@
 			</div>
 		</div>
 		<p class="purple">Category:</p>
-		<select id="select-add">
+		<select id="category-add">
 			<option value="none">None</option>
 			<option value="work">Work</option>
 			<option value="home">Home</option>
 			<option value="shopping">Shopping</option>
 	 	</select>
+		<small>&#x25bc;</small>
 		<p class="purple">Notifications:</p>
 		<small ng-show="task.notification === 0" style="padding: 10px 5px; line-height: 30px; cursor: pointer;" ng-click="hasNotification = true"><i class="ion-plus"></i> Add notification</small>
 		<small ng-show="task.notification > 0" style="padding: 10px 5px; line-height: 30px; cursor: pointer;" ng-click="hasNotification = true">{{ task.notification }} minutes before</small>

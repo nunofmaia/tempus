@@ -13,19 +13,19 @@ var app = angular.module('tempus', ['ngRoute', 'ngAnimate', 'controllers', 'dire
             templateUrl: 'partials/events.html',
             controller: 'EventsCtrl'
         })
-        .when('/events/:date/:id', {
-            templateUrl: 'partials/event.html',
-            controller: 'EventCtrl'
-        })
         .when('/events/add', {
             templateUrl: 'partials/add_event.html',
             controller: 'EventCtrl'
         })
-        .when('/events/:date/:id/edit', {
+        .when('/events/:id', {
+            templateUrl: 'partials/event.html',
+            controller: 'EventCtrl'
+        })
+        .when('/events/:id/edit', {
             templateUrl: 'partials/edit_event.html',
             controller: 'EventCtrl'
         })
-        .when('/events/:date/:id/delete', {
+        .when('/events/:id/delete', {
             templateUrl: 'partials/delete_event.html',
             controller: 'EventCtrl'
         })

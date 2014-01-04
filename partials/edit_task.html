@@ -16,6 +16,14 @@
 				<input type="time" ng-model="task.dueTime" value="{{ task.dueTime }}" ng-click="editField('dueTime', 'time')">
 			</div>
 		</div>
+		<p class="purple">Category:</p>
+		<select id="category-add">
+			<option value="none">None</option>
+			<option value="work">Work</option>
+			<option value="home">Home</option>
+			<option value="shopping">Shopping</option>
+	 	</select>
+		<small>&#x25bc;</small>
 		<p class="purple">Notifications:</p>
 		<small ng-show="task.notification === 0" style="padding: 10px 5px; line-height: 30px; cursor: pointer;" ng-click="hasNotification = true"><i class="ion-plus"></i> Add notification</small>
 		<small ng-show="task.notification > 0" style="padding: 10px 5px; line-height: 30px; cursor: pointer;" ng-click="hasNotification = true">{{ task.notification }} minutes before</small>
