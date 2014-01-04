@@ -25,3 +25,7 @@ Right-click the shortcut of Google Chrome and go to `Properties`.
 On the Target input field, add the flag `--allow-file-access-from-files` at the end of the string. You should have something that looks like `"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files`
 
 Open the `index.html`file and you are done!
+
+### Visiting student's webpage
+
+You can see a demo of the prototype at [http://web.ist.utl.pt/ist167046/tempus](http://web.ist.utl.pt/ist167046/tempus)
