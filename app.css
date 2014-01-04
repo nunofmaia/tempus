@@ -149,6 +149,10 @@ header > small {
     padding-bottom: 8px;
 }
 
+.main-content .icon, footer .icon {
+    color: rgb(91, 201, 202);
+}
+
 a {
     color: inherit;
     text-decoration: none;
